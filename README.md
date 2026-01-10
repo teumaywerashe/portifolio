@@ -14,7 +14,7 @@ Check out my personal portfolio: [https://portifolio-o3gs.onrender.com/](https:/
 
 ## About Me
 
-- Currently exploring advanced React.js, Next.js, and Python integrations
+- Currently exploring advanced backend concepts, and Python integrations
 - Skilled in MongoDB, Express.js, React.js, Node.js, TailwindCSS, Python
 - Passionate about creating real-world projects that solve problems
 - Goal: To grow as a full-stack developer and contribute to impactful projects

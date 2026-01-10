@@ -8,7 +8,7 @@ Building modern, scalable, and user-friendly web applications.
 
 ## Portfolio
 
-Check out my personal portfolio: [TeumayWerasheportfolio.netlify.app](https://portifolio-o3gs.onrender.com)
+Check out my personal portfolio: [ttps://portifolio-o3gs.onrender.com/](https://portifolio-o3gs.onrender.com)
 
 ---
 
@@ -31,7 +31,8 @@ Check out my personal portfolio: [TeumayWerasheportfolio.netlify.app](https://po
 ---
 
 ## 🚀 Featured Projects
-[Resource Hub](ttps://resourcehub-1.onrender.com/)
+
+[Resource Hub](https://resourcehub-1.onrender.com/)
 
 A centralized platform for sharing and managing academic resources. Users can upload, browse, and organize materials with a structured and user-friendly interface.
 
@@ -48,11 +49,9 @@ A management system designed for universities to handle campus facilities effici
 A digital menu system for cafes that displays menu items, prices, and categories in an interactive and responsive interface.
 🔗 https://noteforge-lilac.vercel.app/
 
-Campus Tour Assistant
+[Campus Tour Assistant](#)
 
 A web-based assistant that helps new students and visitors explore campus locations, buildings, and services through an intuitive interface.
----
-
 
 
 ## Connect With Me

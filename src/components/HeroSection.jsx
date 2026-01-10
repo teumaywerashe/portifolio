@@ -13,7 +13,7 @@ import {
   SiPostgresql,
   SiTailwindcss,
 } from "react-icons/si";
-import profilePic from "../assets/Profile.jpeg";
+import profilePic from "../assets/profile.jpeg";
 import useTheme from "../context/ThemeContext";
 
 const Snow = () => (

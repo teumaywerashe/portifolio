@@ -8,7 +8,7 @@ Building modern, scalable, and user-friendly web applications.
 
 ## Portfolio
 
-Check out my personal portfolio: [TeumayWerasheportfolio.netlify.app](https://TeumayWerasheportfolio.netlify.app)
+Check out my personal portfolio: [TeumayWerasheportfolio.netlify.app](https://TeumayWerasheportfolio.onrender.com)
 
 ---
 
@@ -32,25 +32,20 @@ Check out my personal portfolio: [TeumayWerasheportfolio.netlify.app](https://Te
 
 ## Featured Projects
 
-- [Gappotaran Chat App](#) – Real-time chat application using Socket.io & MERN stack
+- [resource hub](#) – Real-time chat application using Socket.io & MERN stack
 - [Food Delivery Website](#) – End-to-end food ordering platform with authentication & cart system
-- [Content Streaming Website](#) – Stream videos/content with user accounts & MongoDB backend
-- [NoteForge Notes App](https://noteforge-lilac.vercel.app/) – A productivity app to create, edit & manage notes securely
-- [Personal Portfolio Website](https://TeumayWerasheportfolio.netlify.app/) – Showcasing my work, skills, and contact info
+- [campus facility management](#) – Stream videos/content with user accounts & MongoDB backend
+- [cafe menu system](https://noteforge-lilac.vercel.app/) – A productivity app to create, edit & manage notes securely
+- [campus tour assistant](https://TeumayWerasheportfolio.netlify.app/) – Showcasing my work, skills, and contact info
 
 ---
 
-## GitHub Stats
 
-![Teumay's GitHub stats](https://github-readme-stats.vercel.app/api?username=theTeumayWerashe&show_icons=true&theme=tokyonight)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=theTeumayWerashe&layout=compact&theme=tokyonight)
-
----
 
 ## Connect With Me
 
-[LinkedIn](https://www.linkedin.com/in/theTeumayWerashe) | [GitHub](https://github.com/theTeumayWerashe) | [Email](mailto:comradeTeumayWerashe@gmail.com) | [WhatsApp](https://wa.me/923127130457?text=Hello%20Teumay%2C%20I%20found%20your%20GitHub%20profile%20and%20would%20like%20to%20connect!)
+[LinkedIn](https://www.linkedin.com/in/teu-18141a308) | [GitHub](https://github.com/teumaywerashe) |
+ [Email](mailto:teumay21@gmail.com) | [WhatsApp](https://wa.me/952731011?text=Hello%20Teumay%2C%20I%20found%20your%20GitHub%20profile%20and%20would%20like%20to%20connect!)
 
 ---
 

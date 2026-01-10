@@ -9,12 +9,6 @@ const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // const stats = [
-  //   { label: 'Experience', value: '1+', icon: <FiCode /> },
-  //   { label: 'Apps Built', value: '12+', icon: <FiSmartphone /> },
-  //   { label: 'Clients', value: '10+', icon: <FiUser /> },
-  //   { label: 'Stack', value: 'MERN', icon: <FiDatabase /> },
-  // ];
 
   return (
     <section 

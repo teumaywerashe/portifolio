@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { FiLinkedin, FiGithub, FiMessageCircle, FiMail } from "react-icons/fi";
 import useTheme from "../context/ThemeContext";
 
@@ -78,7 +77,7 @@ const Footer = () => {
             theme={theme}
           />
           <IconLink
-            href="teumay21@gmail.com"
+            href="mailto:teumay21@gmail.com"
             label="Email"
             icon={<FiMail />}
             theme={theme}

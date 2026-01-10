@@ -39,14 +39,14 @@ const Projects = () => {
       tech: ["MERN Stack", "MongoDB", "Tailwind"],
       type: "Commerce",
     },
-    // {
-    //   title: "NoteForge",
-    //   description:
-    //     "Professional note-taking software with markdown support and organizational workspace features.",
-    //   link: "https://noteforge-rizu.vercel.app",
-    //   tech: ["React", "mongoDB", "RestAPIs", "TailwindCSS"],
-    //   type: "Software / SaaS",
-    // },
+    {
+      title: "cafe Menu",
+      description:
+        "a cafe menu system where a user scan the QR code of the cafe and see the menu of the cafe.",
+      link: "https://noteforge-rizu.vercel.app",
+      tech: ["React", "mongoDB", "RestAPIs", "TailwindCSS"],
+      type: "Software",
+    },
     // {
     //   title: "Zaant AI",
     //   description:

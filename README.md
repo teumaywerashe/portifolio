@@ -47,7 +47,7 @@ A management system designed for universities to handle campus facilities effici
 [Cafe Menu System](https://cafemenu123.onrender.com/)
 
 A digital menu system for cafes that displays menu items, prices, and categories in an interactive and responsive interface.
-🔗 https://noteforge-lilac.vercel.app/
+
 
 [Campus Tour Assistant](#)
 

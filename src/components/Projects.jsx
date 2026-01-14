@@ -43,7 +43,7 @@ const Projects = () => {
       title: "cafe Menu",
       description:
         "a cafe menu system where a user scan the QR code of the cafe and see the menu of the cafe.",
-      link: "https://noteforge-rizu.vercel.app",
+      link: "hhttps://cafemenu123.onrender.com/",
       tech: ["React", "mongoDB", "RestAPIs", "TailwindCSS"],
       type: "Software",
     },
@@ -158,7 +158,7 @@ const Projects = () => {
               </div>
             </div>
             <a
-              href="https://TeumayWerasheportfolio.netlify.app"
+              href="https://portifolio-o3gs.onrender.com/"
               target="_blank"
               rel="noreferrer"
               style={{

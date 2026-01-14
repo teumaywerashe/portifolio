@@ -5,6 +5,7 @@ import useTheme from "../context/ThemeContext";
 
 const ContactForm = () => {
   const { theme, isDarkMode } = useTheme();
+  const [isSending, setIsSending] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -31,13 +32,12 @@ const ContactForm = () => {
     e.preventDefault();
 
     emailjs
-      .send("service_pj42j4j", "template_tdis61b", form, "PKpVN9FZYcF6v5ZfU")
-      .then(
-        () => {
+      .send("service_4lpke7n", "template_pqi9a8n", form, "3s1iIV23TSVLogOi5")
+      .then(() =>
+         {
           showToast("success", "Message sent successfully!");
           setForm({ name: "", email: "", phone: "", service: "", message: "" });
-        },
-        (error) => {
+        },(error) => {
           console.error(error.text);
           showToast("error", "Failed to send message. Please try again.");
         }
@@ -52,8 +52,6 @@ const ContactForm = () => {
       style={{ backgroundColor: theme.background }}
       className="relative flex items-center justify-center min-h-screen py-16 px-6 overflow-hidden transition-colors duration-500"
     >
-      
-
       <div className="absolute inset-0 pointer-events-none z-0">
         {particles.map((_, i) => {
           const size = Math.random() * 6 + 4;
@@ -84,8 +82,6 @@ const ContactForm = () => {
           );
         })}
       </div>
-
-
 
       <motion.div
         ref={formRef}
@@ -185,8 +181,6 @@ const ContactForm = () => {
           </motion.button>
         </form>
 
-        
-        
         <AnimatePresence>
           {toast.show && (
             <motion.div
@@ -199,7 +193,8 @@ const ContactForm = () => {
                 bottom: 30,
                 left: "50%",
                 transform: "translateX(-50%)",
-                backgroundColor: toast.type === "success" ? "#4ade80" : "#f87171",
+                backgroundColor:
+                  toast.type === "success" ? "#4ade80" : "#f87171",
                 color: isDarkMode ? "#111" : "#fff",
                 padding: "1rem 2rem",
                 borderRadius: "1.5rem",

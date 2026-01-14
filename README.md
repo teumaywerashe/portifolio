@@ -8,13 +8,13 @@ Building modern, scalable, and user-friendly web applications.
 
 ## Portfolio
 
-Check out my personal portfolio: [TeumayWerasheportfolio.netlify.app](https://TeumayWerasheportfolio.onrender.com)
+Check out my personal portfolio: [https://portifolio-o3gs.onrender.com/](https://portifolio-o3gs.onrender.com)
 
 ---
 
 ## About Me
 
-- Currently exploring advanced React.js, Next.js, and Python integrations
+- Currently exploring advanced backend concepts, and Python integrations
 - Skilled in MongoDB, Express.js, React.js, Node.js, TailwindCSS, Python
 - Passionate about creating real-world projects that solve problems
 - Goal: To grow as a full-stack developer and contribute to impactful projects
@@ -30,16 +30,28 @@ Check out my personal portfolio: [TeumayWerasheportfolio.netlify.app](https://Te
 
 ---
 
-## Featured Projects
+## 🚀 Featured Projects
 
-- [resource hub](#) – Real-time chat application using Socket.io & MERN stack
-- [Food Delivery Website](#) – End-to-end food ordering platform with authentication & cart system
-- [campus facility management](#) – Stream videos/content with user accounts & MongoDB backend
-- [cafe menu system](https://noteforge-lilac.vercel.app/) – A productivity app to create, edit & manage notes securely
-- [campus tour assistant](https://TeumayWerasheportfolio.netlify.app/) – Showcasing my work, skills, and contact info
+[Resource Hub](https://resourcehub-1.onrender.com/)
 
----
+A centralized platform for sharing and managing academic resources. Users can upload, browse, and organize materials with a structured and user-friendly interface.
 
+Food Delivery Website
+
+A full-stack food delivery application that allows users to browse restaurants, view menus, add items to a cart, and place orders through a seamless checkout flow.
+
+[Campus Facility Management](https://campusfacilitymanagement-1.onrender.com/)
+
+A management system designed for universities to handle campus facilities efficiently. It supports facility listings, availability tracking, user requests, and administrative management features.
+
+[Cafe Menu System](https://cafemenu123.onrender.com/)
+
+A digital menu system for cafes that displays menu items, prices, and categories in an interactive and responsive interface.
+
+
+[Campus Tour Assistant](#)
+
+A web-based assistant that helps new students and visitors explore campus locations, buildings, and services through an intuitive interface.
 
 
 ## Connect With Me

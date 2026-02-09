@@ -1,0 +1,48 @@
+.projects-particles {
+    overflow: hidden
+}
+
+.particle {
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    will-change: transform, opacity, filter
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .particle {
+        animation: drift 18s linear infinite
+    }
+}
+
+@keyframes drift {
+    0% {
+        transform: translateY(-5vh) translateX(0) rotate(0deg)
+    }
+    50% {
+        transform: translateY(50vh) translateX(10vw) rotate(45deg)
+    }
+    100% {
+        transform: translateY(100vh) translateX(-5vw) rotate(0deg)
+    }
+}
+
+.group:hover .particle {
+    opacity: 1
+}
+
+
+/* Lightweight card enhancement for non-tailwind overrides */
+
+.group.rounded-[3rem] {
+    transition: transform .25s ease, box-shadow .25s ease
+}
+
+
+/* small responsive tweak */
+
+@media (max-width: 768px) {
+    .group.rounded-[3rem] {
+        padding: 2rem
+    }
+}

@@ -101,39 +101,6 @@ const About = () => {
 
           
 
-{/* 
-          <motion.div 
-            className="grid grid-cols-2 gap-4 md:gap-6 order-1 lg:order-2"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            {stats.map((stat, idx) => (
-              <motion.div 
-                key={idx}
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                style={{ 
-                  backgroundColor: theme.surface, 
-                  border: `1px solid ${theme.border}` 
-                }}
-                className="p-5 md:p-8 rounded-[2rem] md:rounded-[2.5rem] flex flex-col items-center justify-center text-center shadow-sm group transition-all"
-              >
-                <div 
-                  style={{ backgroundColor: theme.primary + '15', color: theme.primary }}
-                  className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-3 md:mb-4 group-hover:bg-primary group-hover:text-white transition-colors"
-                >
-                  {stat.icon}
-                </div>
-                <h3 style={{ color: theme.textMain }} className="text-2xl md:text-3xl font-black mb-1">
-                  {stat.value}
-                </h3>
-                <p style={{ color: theme.textSecondary }} className="text-[10px] md:text-xs font-bold uppercase tracking-tighter md:tracking-widest opacity-70">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div> */}
 
         </div>
       </div>

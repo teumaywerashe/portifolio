@@ -56,7 +56,7 @@ const Navbar = () => {
                 key={link.id}
                 onClick={() => handleScroll(link.id)}
                 style={{ color: theme.textSecondary }}
-                className="text-sm font-semibold transition hover:text-orange-500"
+                className="text-sm cursor-pointer font-semibold transition hover:text-orange-500"
               >
                 {link.label}
               </button>
@@ -69,7 +69,7 @@ const Navbar = () => {
               <button
                 onClick={toggleTheme}
                 style={{ color: theme.textSecondary }}
-                className="rounded-full p-2 hover:bg-gray-500/10 transition"
+                className="rounded-full cursor-pointer p-2 hover:bg-gray-500/10 transition"
               >
                 {isDarkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
               </button>
@@ -90,13 +90,13 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4 md:hidden">
-            <button
+            <button className="cursor-pointer"
               onClick={toggleTheme}
               style={{ color: theme.textSecondary }}
             >
               {isDarkMode ? <FiSun size={22} /> : <FiMoon size={22} />}
             </button>
-            <button onClick={toggleMenu} style={{ color: theme.textMain }}>
+            <button className="cursor-pointer" onClick={toggleMenu} style={{ color: theme.textMain }}>
               {isOpen ? <FiX size={28} /> : <FiMenu size={28} />}
             </button>
           </div>

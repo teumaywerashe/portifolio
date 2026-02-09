@@ -80,7 +80,7 @@ const HeroSection = () => {
     >
       <Snow />
 
-      <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6 md:max-w-xl z-10">
+      <div className="flex flex-col items-center md:items-start text-center md:text-left gap-10 md:max-w-xl z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -160,17 +160,17 @@ const HeroSection = () => {
           />
         </div>
 
-        {techStack.map((tech, i) => {
+        {/* {techStack.map((tech, i) => {
           const startAngle = (360 / techStack.length) * i;
 
           return (
             <motion.div
               key={i}
               className="hidden absolute inset-0 sm:flex items-center justify-center"
-              initial={{ rotate: startAngle }} // ⬅️ different start
-              animate={{ rotate: startAngle + 360 }} // ⬅️ full 360
+              initial={{ rotate: startAngle }} // 
+              animate={{ rotate: startAngle + 360 }} //
               transition={{
-                duration: 20, // ⬅️ SAME speed
+                duration: 20, /
                 repeat: Infinity,
                 ease: "linear",
               }}
@@ -186,7 +186,7 @@ const HeroSection = () => {
               </div>
             </motion.div>
           );
-        })}
+        })} */}
       </div>
 
       <motion.div

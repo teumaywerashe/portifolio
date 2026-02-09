@@ -7,6 +7,7 @@ import {
   FiCpu,
 } from "react-icons/fi";
 import useTheme from "../context/ThemeContext";
+import "./Projects.css";
 
 const Projects = () => {
   const { theme, isDarkMode } = useTheme();
@@ -47,14 +48,7 @@ const Projects = () => {
       tech: ["React", "mongoDB", "RestAPIs", "TailwindCSS"],
       type: "Software",
     },
-    // {
-    //   title: "Zaant AI",
-    //   description:
-    //     "Modern AI landing page and dashboard frontend with high-performance animations.",
-    //   link: "https://zaant.vercel.app",
-    //   tech: ["React", "Google Gemini API", "TailwindCSS", "mongoDB"],
-    //   type: "Frontend",
-    // },
+   
   ];
 
   const particles = Array.from({ length: 35 });
@@ -66,7 +60,7 @@ const Projects = () => {
       style={{ backgroundColor: theme.background }}
       className="relative py-24 px-6 md:px-16 lg:px-24 transition-colors duration-500 overflow-hidden"
     >
-      <div className="absolute inset-0 pointer-events-none z-0">
+      <div className="absolute inset-0 pointer-events-none z-0 projects-particles">
         {particles.map((_, i) => {
           const size = Math.random() * 7 + 3;
           const duration = Math.random() * 12 + 8;
@@ -75,7 +69,7 @@ const Projects = () => {
           return (
             <motion.div
               key={i}
-              className="absolute rounded-full"
+              className="absolute rounded-full particle"
               style={{
                 backgroundColor: theme.primary,
                 width: size,

@@ -145,10 +145,10 @@ const HeroSection = () => {
       </div>
 
       <div className="relative mt-10 md:mt-0 mx-auto w-50 h-50 md:w-[380px] md:h-[380px] z-10">
-        <div
+        {/* <div
           className="absolute inset-0 rounded-full blur-[100px] opacity-25"
           style={{ backgroundColor: theme.primary }}
-        />
+        /> */}
         <div
           className="relative z-10 w-full h-full rounded-full overflow-hidden border-[3px]"
           style={{ borderColor: theme.primary }}
@@ -160,33 +160,7 @@ const HeroSection = () => {
           />
         </div>
 
-        {/* {techStack.map((tech, i) => {
-          const startAngle = (360 / techStack.length) * i;
-
-          return (
-            <motion.div
-              key={i}
-              className="hidden absolute inset-0 sm:flex items-center justify-center"
-              initial={{ rotate: startAngle }} // 
-              animate={{ rotate: startAngle + 360 }} //
-              transition={{
-                duration: 20, /
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              <div
-                className="absolute text-5xl"
-                style={{
-                  color: tech.color,
-                  transform: `translateX(${tech.distance}px)`,
-                }}
-              >
-                {tech.icon}
-              </div>
-            </motion.div>
-          );
-        })} */}
+    
       </div>
 
       <motion.div

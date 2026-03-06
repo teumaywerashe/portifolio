@@ -8,7 +8,7 @@ Building modern, scalable, and user-friendly web applications.
 
 ## Portfolio
 
-Check out my personal portfolio: [https://portifolio-o3gs.onrender.com/](https://portifolio-o3gs.onrender.com)
+[Portifolio live demo](https://portifolio-o3gs.onrender.com)
 
 ---
 

@@ -3,8 +3,9 @@ import { motion, useInView } from "framer-motion";
 import {
   FiExternalLink,
   FiLayers,
-  FiMessageSquare,
+  FiGithub,
   FiCpu,
+  
 } from "react-icons/fi";
 import useTheme from "../context/ThemeContext";
 import "./Projects.css";
@@ -19,53 +20,53 @@ const Projects = () => {
       title: "campus tour assistant",
       description:
         "A web based platform where students and guests of a campus can get information about each and evey facility in the campus and can navigate to the facility using the map ",
-      link: "https://campusfacilitymanagement-1.onrender.com",
+      liveLink: "https://campusfacilitymanagement-1.onrender.com",githubLink:"",
       tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
       type: "Real-time Chat",
-      specialIcon: <FiMessageSquare />,
+      specialIcon: <FiGithub />,
     },
     {
       title: "Resource Hub",
       description:
         "A web based platform where students can find the details of all the ethiopian universities and the cources and departments they deliver",
-      link: "https://resourcehub-1.onrender.com/",
+      liveLink: "https://resourcehub-1.onrender.com/",
       tech: ["React", "Node.js","MongoDB Atlass", "RestAPI"],
-      type: "personal project",
+      type: "personal project", specialIcon: <FiGithub />,githubLink:"",
     },
     {
       title: "campus facility management",
       description:
         "A web based platform where students and stuff of a campus can report issue that they see in the campus",
-      link: "https://campusfacilitymanagement-1.onrender.com",
+      liveLink: "https://campusfacilitymanagement-1.onrender.com",
       tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
       type: "Real-time Chat",
-      specialIcon: <FiMessageSquare />,
+      specialIcon: <FiGithub />,githubLink:"",
     },
    
     {
       title: "Food delivery",
       description:
         "A web based food delivery app where users  can order a food and make there payment through chapa ",
-      link: "https://fullstack-food-delivery-1.onrender.com/",
+      liveLink: "https://fullstack-food-delivery-1.onrender.com/",
       tech: ["MERN Stack", "MongoDB", "Tailwind"],
-      type: "Commerce",
+      type: "Commerce", specialIcon: <FiGithub />,githubLink:"",
     },
     {
       title: "e-commerce website",
       description:
         "A web based platform where users can buy and sell products online and make there payment through chapa",
-      link: "https://campusfacilitymanagement-1.onrender.com",
+      liveLink: "https://campusfacilitymanagement-1.onrender.com",
       tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
       type: "Real-time Chat",
-      specialIcon: <FiMessageSquare />,
+      specialIcon: <FiGithub />,githubLink:"",
     },
     {
       title: "cafe Menu",
       description:
         "a cafe menu system where a user scan the QR code of the cafe and see the menu of the cafe.",
-      link: "hhttps://cafemenu123.onrender.com/",
+      liveLink: "hhttps://cafemenu123.onrender.com/",
       tech: ["React", "mongoDB", "RestAPIs", "TailwindCSS"],
-      type: "Software",
+      type: "Software", specialIcon: <FiGithub />,githubLink:"",
     },
    
   ];
@@ -207,17 +208,15 @@ const Projects = () => {
               <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500 opacity-0 group-hover:opacity-10 blur-3xl transition-opacity"></div>
               <div>
                 <div className="flex justify-between items-start mb-8">
-                  <div
+                  {/* <div
                     style={{
                       backgroundColor: theme.primary + "15",
                       color: theme.primary,
                     }}
                     className="p-5 rounded-[1.5rem] text-3xl shadow-inner"
-                  >
-                    {project.specialIcon || <FiLayers />}
-                  </div>
-                  <a
-                    href={project.link}
+                  > */}
+                     <a
+                    href={project.liveLink}
                     target="_blank"
                     rel="noreferrer"
                     style={{
@@ -225,8 +224,24 @@ const Projects = () => {
                       backgroundColor: theme.border + "30",
                       zIndex: 20,
                     }}
-                    className="hover:scale-110 transition-transform p-3 rounded-full border border-transparent hover:border-indigo-500 relative"
+                    className="font-bold border-white text-3xl hover:scale-110 transition-transform p-3 rounded-full border hover:border-indigo-500 relative"
                   >
+                   {project.specialIcon || <FiLayers />}
+                  </a>
+                   
+                  {/* </div> */}
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      color: theme.textMain,
+                      backgroundColor: theme.border + "30",
+                      zIndex: 20,
+                    }}
+                    className="hover:scale-110 flex group transition-transform p-3 rounded-full border border-white hover:border-indigo-500 relative"
+                  >
+                    
                     <FiExternalLink size={22} />
                   </a>
                 </div>

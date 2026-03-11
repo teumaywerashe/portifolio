@@ -30,7 +30,7 @@ Building modern, scalable, and user-friendly web applications.
 
 ---
 
-## 🚀 Featured Projects
+##  Featured Projects
 
 [Resource Hub](https://resourcehub-1.onrender.com/)
 

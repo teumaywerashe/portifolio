@@ -20,7 +20,7 @@ const Projects = () => {
       title: "campus tour assistant",
       description:
         "A web based platform where students and guests of a campus can get information about each and evey facility in the campus and can navigate to the facility using the map ",
-      liveLink: "https://campusfacilitymanagement-1.onrender.com",githubLink:"",
+      liveLink: "https://campusfacilitymanagement-1.onrender.com",githubLink:`${import.meta.env.VITE_URL}/github`,
       tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
       type: "Real-time Chat",
       specialIcon: <FiGithub />,
@@ -31,7 +31,8 @@ const Projects = () => {
         "A web based platform where students can find the details of all the ethiopian universities and the cources and departments they deliver",
       liveLink: "https://resourcehub-1.onrender.com/",
       tech: ["React", "Node.js","MongoDB Atlass", "RestAPI"],
-      type: "personal project", specialIcon: <FiGithub />,githubLink:"",
+      type: "personal project", specialIcon: <FiGithub />,
+      githubLink:`${import.meta.env.VITE_URL}/github`,
     },
     {
       title: "campus facility management",
@@ -40,7 +41,7 @@ const Projects = () => {
       liveLink: "https://campusfacilitymanagement-1.onrender.com",
       tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
       type: "Real-time Chat",
-      specialIcon: <FiGithub />,githubLink:"",
+      specialIcon: <FiGithub />,githubLink:`${import.meta.env.VITE_URL}/github`,
     },
    
     {
@@ -49,7 +50,7 @@ const Projects = () => {
         "A web based food delivery app where users  can order a food and make there payment through chapa ",
       liveLink: "https://fullstack-food-delivery-1.onrender.com/",
       tech: ["MERN Stack", "MongoDB", "Tailwind"],
-      type: "Commerce", specialIcon: <FiGithub />,githubLink:"",
+      type: "Commerce", specialIcon: <FiGithub />,githubLink:`${import.meta.env.VITE_URL}/github`,
     },
     {
       title: "e-commerce website",
@@ -58,7 +59,7 @@ const Projects = () => {
       liveLink: "https://e-commerce-1-rm56.onrender.com",
       tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
       type: "Real-time Chat",
-      specialIcon: <FiGithub />,githubLink:"",
+      specialIcon: <FiGithub />,githubLink:`${import.meta.env.VITE_URL}/github`,
     },
     {
       title: "cafe Menu",
@@ -66,7 +67,7 @@ const Projects = () => {
         "a cafe menu system where a user scan the QR code of the cafe and see the menu of the cafe.",
       liveLink: "hhttps://cafemenu123.onrender.com/",
       tech: ["React", "mongoDB", "RestAPIs", "TailwindCSS"],
-      type: "Software", specialIcon: <FiGithub />,githubLink:"",
+      type: "Software", specialIcon: <FiGithub />,githubLink:`${import.meta.env.VITE_URL}/github`,
     },
    
   ];
@@ -208,17 +209,11 @@ const Projects = () => {
               <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500 opacity-0 group-hover:opacity-10 blur-3xl transition-opacity"></div>
               <div>
                 <div className="flex justify-between items-start mb-8">
-                  {/* <div
-                    style={{
-                      backgroundColor: theme.primary + "15",
-                      color: theme.primary,
-                    }}
-                    className="p-5 rounded-[1.5rem] text-3xl shadow-inner"
-                  > */}
+               
                      <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noreferrer"
+                    href={project.githubLink}
+                    // target="_blank"
+                    // rel="noreferrer"
                     style={{
                       color: theme.textMain,
                       backgroundColor: theme.border + "30",
@@ -229,7 +224,7 @@ const Projects = () => {
                    {project.specialIcon || <FiLayers />}
                   </a>
                    
-                  {/* </div> */}
+                 
                   <a
                     href={project.liveLink}
                     target="_blank"

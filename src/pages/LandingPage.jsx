@@ -16,6 +16,7 @@ const LandingPage = () => {
       <Skills/>
       <Projects />
       <ContactForm />
+    
       <Footer />
     </div>
   );

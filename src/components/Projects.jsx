@@ -15,10 +15,19 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const projectsData = [
+     {
+      title: "campus tour assistant",
+      description:
+        "A web based platform where students and guests of a campus can get information about each and evey facility in the campus and can navigate to the facility using the map ",
+      link: "https://campusfacilitymanagement-1.onrender.com",
+      tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
+      type: "Real-time Chat",
+      specialIcon: <FiMessageSquare />,
+    },
     {
       title: "Resource Hub",
       description:
-        "A web based platform where students can find the details of all the ethiopian universities and the cources and departments they give",
+        "A web based platform where students can find the details of all the ethiopian universities and the cources and departments they deliver",
       link: "https://resourcehub-1.onrender.com/",
       tech: ["React", "Node.js","MongoDB Atlass", "RestAPI"],
       type: "personal project",
@@ -32,6 +41,7 @@ const Projects = () => {
       type: "Real-time Chat",
       specialIcon: <FiMessageSquare />,
     },
+   
     {
       title: "Food delivery",
       description:
@@ -39,6 +49,15 @@ const Projects = () => {
       link: "https://fullstack-food-delivery-1.onrender.com/",
       tech: ["MERN Stack", "MongoDB", "Tailwind"],
       type: "Commerce",
+    },
+    {
+      title: "e-commerce website",
+      description:
+        "A web based platform where users can buy and sell products online and make there payment through chapa",
+      link: "https://campusfacilitymanagement-1.onrender.com",
+      tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
+      type: "Real-time Chat",
+      specialIcon: <FiMessageSquare />,
     },
     {
       title: "cafe Menu",

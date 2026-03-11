@@ -6,9 +6,9 @@ import Github from "./components/Github";
 const App = () => {
   return <><LandingPage />
   <Routes>
-    <Route path="" element={<LandingPage />} />
    <Route path="/github" element={<Github />} />
-  </Routes></>;
+  </Routes>
+  </>;
 };
 
 export default App;

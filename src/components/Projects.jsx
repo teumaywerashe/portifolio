@@ -55,7 +55,7 @@ const Projects = () => {
       title: "e-commerce website",
       description:
         "A web based platform where users can buy and sell products online and make there payment through chapa",
-      liveLink: "https://campusfacilitymanagement-1.onrender.com",
+      liveLink: "https://e-commerce-1-rm56.onrender.com",
       tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
       type: "Real-time Chat",
       specialIcon: <FiGithub />,githubLink:"",

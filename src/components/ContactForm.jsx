@@ -148,7 +148,7 @@ const ContactForm = () => {
               className="w-full p-4 rounded-2xl border outline-none focus:border-orange-500 transition-all font-medium appearance-none"
             >
               <option value="">Select Service</option>
-              <option value="app">Web App Development</option>
+              <option value="app">mobile App Development</option>
               <option value="frontend">Front-end UI/UX</option>
               <option value="backend">Backend Systems</option>
               <option value="fullstack">Full-Stack Solution</option>
@@ -157,7 +157,7 @@ const ContactForm = () => {
 
           <textarea
             name="message"
-            placeholder="Tell me about your vision..."
+            placeholder="Your Message ..."
             rows="4"
             value={form.message}
             onChange={handleChange}

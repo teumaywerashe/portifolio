@@ -131,8 +131,9 @@ const HeroSection = () => {
             Explore Projects
           </a>
           <a
-            href="/Teumay_Werashe_resume.pdf"
-            download
+            href="https://drive.google.com/file/d/19FBickcTMCnS_5X_vdVo22mDkVH0KnHD/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
             style={{
               color: theme.textMain,
               border: `2px solid ${theme.border}`,

@@ -75,8 +75,10 @@ const Navbar = () => {
               </button>
 
               <a
-                href="Teumay_Werashe_resume.pdf"
-                download="Teumay_Werashe_resume.pdf"
+                href="https://drive.google.com/file/d/19FBickcTMCnS_5X_vdVo22mDkVH0KnHD/view?usp=sharing"
+                target="_blank"
+                rel="noreferrer"
+                // download="Teumay_Werashe_resume.pdf"
                 className="flex items-center justify-center gap-3 font-bold rounded-full px-5 py-2 text-sm transition hover:bg-gray-500/5"
                 style={{
                   border: `2px solid ${theme.border}`,

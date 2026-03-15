@@ -178,7 +178,7 @@ const Projects = () => {
               </div>
             </div>
             <a
-              href="https://portifolio-o3gs.onrender.com/"
+              href="https://github.com/teumaywerashe/portifolio.git"
               target="_blank"
               rel="noreferrer"
               style={{

@@ -75,8 +75,8 @@ const Navbar = () => {
               </button>
 
               <a
-                href="/Teumay_Werashe_resume.pdf"
-                download="Teumay_Werashe_Teumay_Werashe_resume.pdf"
+                href="Teumay_Werashe_resume.pdf"
+                download="Teumay_Werashe_resume.pdf"
                 className="flex items-center justify-center gap-3 font-bold rounded-full px-5 py-2 text-sm transition hover:bg-gray-500/5"
                 style={{
                   border: `2px solid ${theme.border}`,
@@ -128,8 +128,9 @@ const Navbar = () => {
           ))}
 
           <a
-            href="Teumay_Werashe_resume.pdf"
-            download="Teumay_Werashe_Teumay_Werashe_resume.pdf"
+            href="./Teumay_Werashe_resume.pdf"
+            
+            download="Teumay_Werashe_resume.pdf"
             className="flex items-center justify-center gap-3 mt-4 w-full rounded-full py-4 text-center text-lg font-bold transition hover:bg-gray-500/5"
             style={{
               border: `2px solid ${theme.border}`,

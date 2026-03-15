@@ -20,8 +20,8 @@ const Projects = () => {
       title: "campus tour assistant",
       description:
         "A web based platform where students and guests of a campus can get information about each and evey facility in the campus and can navigate to the facility using the map ",
-      liveLink: "https://campusfacilitymanagement-1.onrender.com",
-      githubLink:"https://github.com/teumaywerashe/portifolio.git",
+      liveLink: "https://campus-tour-assistant.onrender.com/",
+      githubLink:"https://github.com/teumaywerashe/campus_tour_assistant.git",
       tech: ["TailwindCss", "React", "MongoDB", "Node.js"],
       type: "Real-time Chat",
       specialIcon: <FiGithub />,
@@ -33,7 +33,7 @@ const Projects = () => {
       liveLink: "https://resourcehub-1.onrender.com/",
       tech: ["React", "Node.js","MongoDB Atlass", "RestAPI"],
       type: "personal project", specialIcon: <FiGithub />,
-      githubLink:"https://github.com/teumaywerashe/portifolio.git",
+      githubLink:"https://github.com/teumaywerashe/resourceHub.git",
     },
     {
       title: "campus facility management",
@@ -52,7 +52,8 @@ const Projects = () => {
         "A web based food delivery app where users  can order a food and make there payment through chapa ",
       liveLink: "https://fullstack-food-delivery-1.onrender.com/",
       tech: ["MERN Stack", "MongoDB", "Tailwind"],
-      type: "Commerce", specialIcon: <FiGithub />,githubLink:"https://github.com/teumaywerashe/portifolio.git",
+      type: "Commerce", specialIcon: <FiGithub />,
+      githubLink:"https://github.com/teumaywerashe/fullStack-food-delivery.git",
     },
     {
       title: "e-commerce website",
@@ -71,7 +72,7 @@ const Projects = () => {
       liveLink: "hhttps://cafemenu123.onrender.com/",
       tech: ["React", "mongoDB", "RestAPIs", "TailwindCSS"],
       type: "Software", specialIcon: <FiGithub />,
-      githubLink:"https://github.com/teumaywerashe/portifolio.git",
+      githubLink:"https://github.com/teumaywerashe/cafeMenu.git",
     },
    
   ];

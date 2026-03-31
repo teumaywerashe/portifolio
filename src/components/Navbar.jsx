@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { FiMenu, FiX, FiSun, FiMoon, FiDownload } from "react-icons/fi";
 import useTheme from "../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, isDarkMode, toggleTheme } = useTheme();
-
+const navigate=useNavigate()
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleScroll = (id) => {
@@ -54,7 +55,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => handleScroll(link.id)}
+                onClick={() => navigate(`/${link.id}`)}
                 style={{ color: theme.textSecondary }}
                 className="text-sm cursor-pointer font-semibold transition hover:text-orange-500"
               >

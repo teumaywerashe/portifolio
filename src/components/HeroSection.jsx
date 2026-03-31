@@ -76,11 +76,10 @@ const HeroSection = () => {
       id="home"
       ref={ref}
       style={{ backgroundColor: theme.background }}
-      className="relative min-h-[85vh] flex flex-col gap-20 md:flex-row items-center px-6 md:px-16 lg:px-24 pt-12 md:pt-16 overflow-hidden transition-colors duration-500"
+      className="relative mx-auto  min-h-[85vh] flex flex-col gap-20 md:flex-row items-center justify-center px-4 md:px-16 lg:px-24 pt-12 md:pt-16 overflow-hidden transition-colors duration-500"
     >
       <Snow />
-
-      <div className="flex flex-col items-center md:items-start text-center md:text-left gap-10 md:max-w-xl z-10">
+      <div className="flex mx-50 flex-col items-center md:items-start text-center md:text-left gap-10 md:max-w-xl z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

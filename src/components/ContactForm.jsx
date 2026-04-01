@@ -32,7 +32,7 @@ const ContactForm = () => {
     e.preventDefault();
 
     emailjs
-      .send("service_4lpke7n", "template_pqi9a8n", form, "3s1iIV23TSVLogOi5")
+      .send("service_gnjno3b", "template_pqi9a8n", form, "3s1iIV23TSVLogOi5")
       .then(() =>
          {
           showToast("success", "Message sent successfully!");

@@ -5,12 +5,10 @@ import useTheme from "../context/ThemeContext";
 
 const ContactForm = () => {
   const { theme, isDarkMode } = useTheme();
-  const [isSending, setIsSending] = useState(false);
+  // const [isSending, setIsSending] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone: "",
-    service: "",
     message: "",
   });
 

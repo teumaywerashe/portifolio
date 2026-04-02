@@ -15,7 +15,7 @@ const About = () => {
       id="about"
       ref={ref}
       style={{ backgroundColor: theme.background }}
-      className="py-20 px-4 md:py-24 md:px-16 lg:px-24 transition-colors duration-500 overflow-hidden"
+      className="py-20 px-4 md:py-24 md:px-16 lg:px-24  max-h-[65vh] transition-colors duration-500 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         
@@ -29,14 +29,14 @@ const About = () => {
 
   {/* --- HEADER SECTION --- */}
   <motion.div 
-    className="mb-12 md:mb-16 text-center lg:text-left"
+    className="mb-12 md:mb-10 text-center lg:text-left"
     initial={{ opacity: 0, y: 20 }}
     animate={isInView ? { opacity: 1, y: 0 } : {}}
     transition={{ duration: 0.6 }}
   >
     <h2 
       style={{ color: theme.textMain }}
-      className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter uppercase italic"
+      className="text-4xl md:text-5xl lg:text-6xl font-black mb-2 tracking-tighter uppercase italic"
     >
       About <span style={{ color: theme.primary }}>Me.</span>
     </h2>

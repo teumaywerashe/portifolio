@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, isDarkMode, toggleTheme } = useTheme();
-const navigate=useNavigate()
+  const navigate = useNavigate();
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleScroll = (id) => {
@@ -34,7 +34,10 @@ const navigate=useNavigate()
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-16 items-center justify-between">
           <button
-            onClick={() => handleScroll("home")}
+            onClick={() => {
+              navigate("/");
+              handleScroll("home");
+            }}
             className="flex items-center gap-2 group cursor-pointer"
           >
             <div
@@ -75,7 +78,7 @@ const navigate=useNavigate()
                 {isDarkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
               </button>
 
-              <a
+              {/* <a
                 href="https://drive.google.com/file/d/19FBickcTMCnS_5X_vdVo22mDkVH0KnHD/view?usp=sharing"
                 target="_blank"
                 rel="noreferrer"
@@ -88,18 +91,23 @@ const navigate=useNavigate()
                 }}
               >
                 <FiDownload /> Get Resume
-              </a>
+              </a> */}
             </div>
           </div>
 
           <div className="flex items-center gap-4 md:hidden">
-            <button className="cursor-pointer"
+            <button
+              className="cursor-pointer"
               onClick={toggleTheme}
               style={{ color: theme.textSecondary }}
             >
               {isDarkMode ? <FiSun size={22} /> : <FiMoon size={22} />}
             </button>
-            <button className="cursor-pointer" onClick={toggleMenu} style={{ color: theme.textMain }}>
+            <button
+              className="cursor-pointer"
+              onClick={toggleMenu}
+              style={{ color: theme.textMain }}
+            >
               {isOpen ? <FiX size={28} /> : <FiMenu size={28} />}
             </button>
           </div>
@@ -130,7 +138,7 @@ const navigate=useNavigate()
             </button>
           ))}
 
-          <a
+          {/* <a
             href="./Teumay_Werashe_resume.pdf"
             
             download="Teumay_Werashe_resume.pdf"
@@ -142,7 +150,7 @@ const navigate=useNavigate()
             }}
           >
             <FiDownload /> Get Resume
-          </a>
+          </a> */}
         </div>
       </div>
     </nav>

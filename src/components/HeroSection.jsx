@@ -15,6 +15,7 @@ import {
 } from "react-icons/si";
 import profilePic from "../assets/profile.jpeg";
 import useTheme from "../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 const Snow = () => (
   <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
@@ -33,6 +34,7 @@ const Snow = () => (
 );
 
 const HeroSection = () => {
+  const navigate =useNavigate()
   const { theme, isDarkMode } = useTheme();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
@@ -76,24 +78,11 @@ const HeroSection = () => {
       id="home"
       ref={ref}
       style={{ backgroundColor: theme.background }}
-      className="relative mx-auto  min-h-[85vh] flex flex-col gap-20 md:flex-row items-center justify-center px-4 md:px-16 lg:px-24 pt-12 md:pt-16 overflow-hidden transition-colors duration-500"
+      className="relative mx-auto  min-h-[65vh] flex flex-col gap-20 md:flex-row items-center justify-center px-4 md:px-16 lg:px-24 pt-12 md:pt-16 overflow-hidden transition-colors duration-500"
     >
       <Snow />
       <div className="flex mx-50 flex-col items-center md:items-start text-center md:text-left gap-10 md:max-w-xl z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="px-6 py-2 rounded-full font-semibold"
-          style={{
-            backgroundColor: isDarkMode
-              ? "rgba(99,102,241,0.15)"
-              : "rgba(99,102,241,0.1)",
-            color: theme.primary,
-            border: `1px solid ${theme.border}`,
-          }}
-        >
-          Full-Stack Web & Mobile Developer
-        </motion.div>
+      
 
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -101,10 +90,11 @@ const HeroSection = () => {
           transition={{ delay: 0.1 }}
           style={{ color: theme.textMain }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black"
-        >
-          Teumay{" "}
-          <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-transparent bg-clip-text">
-            Werashe
+        > 
+        <span className="font-serif "> Hi, I'm </span>
+     
+          <span className=" text-blue-500 mr-40">
+             Teumay Werashe
           </span>
         </motion.h1>
 
@@ -115,20 +105,18 @@ const HeroSection = () => {
           style={{ color: theme.textSecondary }}
           className="text-base sm:text-lg md:text-xl leading-relaxed max-w-md md:max-w-xl"
         >
-          I build <b>modern, scalable MERN applications</b> and robust React
-          ecosystems. I also craft{" "}
-          <span className="text-green-500 font-bold">React Native</span> mobile
-          apps with high-performance UX and interactive interfaces.
+         A <b>Fullstack </b> and  
+          <b > Mobile App</b> Developer
         </motion.p>
 
         <div className="hidden md:flex gap-4 mt-4">
-          <a
-            href="#projects"
+          <button
+            onClick={() =>navigate('projects')}
             style={{ backgroundColor: theme.primary }}
             className="px-8 py-3 rounded-full text-white font-bold shadow-xl hover:scale-105 transition"
           >
             Explore Projects
-          </a>
+          </button>
           <a
             href="https://drive.google.com/file/d/19FBickcTMCnS_5X_vdVo22mDkVH0KnHD/view?usp=sharing"
             target="_blank"
@@ -145,10 +133,7 @@ const HeroSection = () => {
       </div>
 
       <div className="relative mt-10 md:mt-0 mx-auto w-50 h-50 md:w-[380px] md:h-[380px] z-10">
-        {/* <div
-          className="absolute inset-0 rounded-full blur-[100px] opacity-25"
-          style={{ backgroundColor: theme.primary }}
-        /> */}
+       
         <div
           className="relative z-10 w-full h-full rounded-full overflow-hidden border-[3px]"
           style={{ borderColor: theme.primary }}

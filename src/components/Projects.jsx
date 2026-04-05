@@ -1,185 +1,365 @@
-import React, { useRef } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
-import { FiExternalLink, FiLayers, FiGithub, FiCpu } from "react-icons/fi";
-import useTheme from "../context/ThemeContext";
-import "./Projects.css";
-import { projectsData } from "../data/Projects";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import useTheme from "../context/ThemeContext";
+import { projectsData } from "../data/Projects";
+import "./Projects.css";
 
 const Projects = () => {
   const { theme, isDarkMode } = useTheme();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const sectionRef = useRef(null);
+  const scrollRef  = useRef(null);
+  const isInView   = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const particles = Array.from({ length: 35 });
+  const [canScrollLeft,  setCanScrollLeft]  = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isDragging,     setIsDragging]     = useState(false);
+  const [hintVisible,    setHintVisible]    = useState(true);
+
+  const drag = useRef({ active: false, startX: 0, scrollLeft: 0 });
+  const edgeRaf = useRef(null);
+
+  // ── scroll state tracker ────────────────────────────────────
+  const syncState = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 2);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 2);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    // small delay so layout is settled before first measurement
+    const t = setTimeout(syncState, 100);
+    el.addEventListener("scroll", syncState);
+    window.addEventListener("resize", syncState);
+    return () => {
+      clearTimeout(t);
+      el.removeEventListener("scroll", syncState);
+      window.removeEventListener("resize", syncState);
+    };
+  }, [syncState]);
+
+  // hide hint on first scroll
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const hide = () => setHintVisible(false);
+    el.addEventListener("scroll", hide, { once: true });
+    return () => el.removeEventListener("scroll", hide);
+  }, []);
+
+  // ── chevron scroll (one full viewport width per click) ──────
+  const scrollBy = (dir) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir === "left" ? '-300' : '300', behavior: "smooth" });
+  };
+
+  // ── mouse drag ───────────────────────────────────────────────
+  const onMouseDown = (e) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    drag.current = { active: true, startX: e.pageX - el.offsetLeft, scrollLeft: el.scrollLeft };
+    setIsDragging(true);
+  };
+
+  const onMouseMove = useCallback((e) => {
+    if (!drag.current.active) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    e.preventDefault();
+    el.scrollLeft = drag.current.scrollLeft - (e.pageX - el.offsetLeft - drag.current.startX) * 1.2;
+  }, []);
+
+  const onMouseUp = useCallback(() => {
+    drag.current.active = false;
+    setIsDragging(false);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup",   onMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup",   onMouseUp);
+    };
+  }, [onMouseMove, onMouseUp]);
+
+  // ── touch drag ───────────────────────────────────────────────
+  const onTouchStart = (e) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    drag.current = { active: true, startX: e.touches[0].pageX - el.offsetLeft, scrollLeft: el.scrollLeft };
+  };
+  const onTouchMove = useCallback((e) => {
+    if (!drag.current.active) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollLeft = drag.current.scrollLeft - (e.touches[0].pageX - el.offsetLeft - drag.current.startX) * 1.2;
+  }, []);
+  const onTouchEnd = useCallback(() => { drag.current.active = false; }, []);
+
+  // ── cursor-edge auto-scroll ──────────────────────────────────
+  const onRowMouseMove = useCallback((e) => {
+    const el = scrollRef.current;
+    if (!el || drag.current.active) return;
+    const { left, width } = el.getBoundingClientRect();
+    const x = e.clientX - left;
+    const zone = 80, speed = 12;
+    cancelAnimationFrame(edgeRaf.current);
+    let v = 0;
+    if (x < zone)         v = -speed * (1 - x / zone);
+    else if (x > width - zone) v =  speed * (1 - (width - x) / zone);
+    if (!v) return;
+    const tick = () => { el.scrollLeft += v; edgeRaf.current = requestAnimationFrame(tick); };
+    edgeRaf.current = requestAnimationFrame(tick);
+  }, []);
+  const onRowMouseLeave = useCallback(() => cancelAnimationFrame(edgeRaf.current), []);
+
+  const particles    = Array.from({ length: 35 });
+  const activeColor  = theme.primary;
+  const disabledColor = isDarkMode ? "#374151" : "#e5e7eb";
+  const disabledText  = isDarkMode ? "#6b7280" : "#9ca3af";
 
   return (
     <section
       id="projects"
-      ref={ref}
+      ref={sectionRef}
       style={{ backgroundColor: theme.background }}
-      className="relative items-center justify-center  py-24  px-6 md:px-16 lg:px-24 transition-colors duration-500 overflow-hidden"
+      className="relative px-6 md:px-12 py-12 transition-colors duration-500 overflow-hidden"
     >
+      {/* particles */}
       <div className="absolute inset-0 pointer-events-none z-0 projects-particles">
         {particles.map((_, i) => {
-          const size = Math.random() * 7 + 3;
+          const size     = Math.random() * 7 + 3;
           const duration = Math.random() * 12 + 8;
-          const delay = Math.random() * 10;
-
+          const delay    = Math.random() * 10;
           return (
             <motion.div
               key={i}
               className="absolute rounded-full particle"
               style={{
                 backgroundColor: theme.primary,
-                width: size,
-                height: size,
+                width: size, height: size,
                 left: Math.random() * 100 + "%",
                 filter: `blur(${size / 2.5}px)`,
                 boxShadow: `0 0 ${size * 3}px ${theme.primary}80`,
               }}
               initial={{ y: -100, opacity: 0 }}
-              animate={{
-                y: [0, 1200],
-                opacity: [0, 0.7, 0.7, 0],
-                x: [0, Math.random() * 60 - 30, 0],
-              }}
-              transition={{
-                duration: duration,
-                repeat: Infinity,
-                delay: -delay,
-                ease: "linear",
-              }}
+              animate={{ y: [0, 1200], opacity: [0, 0.7, 0.7, 0], x: [0, Math.random() * 60 - 30, 0] }}
+              transition={{ duration, repeat: Infinity, delay: -delay, ease: "linear" }}
             />
           );
         })}
       </div>
 
-      <motion.div
-        className="mb-12 mx-50 text-center md:text-left"
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-      >
-        <h2
-          style={{ color: theme.textMain }}
-          className="text-4xl md:text-6xl font-black mb-4 tracking-tighter italic uppercase"
-        >
-          Featured <span style={{ color: theme.primary }}>Work.</span>
-        </h2>
-        <div
-          className="h-1.5 w-24 rounded-full mx-auto md:mx-0"
-          style={{ backgroundColor: theme.primary }}
-        ></div>
-      </motion.div>
+      {/* ── centered content wrapper ── */}
+      <div className="max-w-7xl mx-auto w-full relative z-10">
 
-      <motion.div
-        className="grid mx-auto max-w-7xl grid-cols-1 md:grid-cols-3 gap-8"
-        initial="initial"
-        animate="animate"
-      >
-        {projectsData.map((project) => (
-          <motion.article
-            key={project.title}
-            className="rounded-lg shadow-md p-6 border transition-colors duration-500"
+      {/* ── header ── */}
+      <div className="flex items-center justify-between mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+        >
+          <h2
+            style={{ color: theme.textMain }}
+            className="text-4xl md:text-6xl font-black tracking-tighter italic uppercase mb-3"
+          >
+            Featured <span style={{ color: theme.primary }}>Work.</span>
+          </h2>
+          <div className="h-1.5 w-24 rounded-full" style={{ backgroundColor: theme.primary }} />
+        </motion.div>
+
+        {/* chevrons */}
+        <div className="flex gap-3">
+          <button
+            onClick={() => scrollBy("left")}
+            aria-label="Previous projects"
+            className="chevron-btn"
             style={{
-              background: isDarkMode ? theme.surface : theme.background,
-              borderColor: isDarkMode ? theme.border : "#e5e7eb",
-              boxShadow: isDarkMode
-                ? "0 2px 16px 0 rgba(31,41,55,0.4)"
-                : "0 2px 16px 0 rgba(0,0,0,0.06)",
+              backgroundColor: canScrollLeft ? activeColor : disabledColor,
+              color: canScrollLeft ? "#fff" : disabledText,
             }}
           >
+            <FiChevronLeft size={22} />
+          </button>
+          <button
+            onClick={() => scrollBy("right")}
+            aria-label="Next projects"
+            className="chevron-btn"
+            style={{
+              backgroundColor: canScrollRight ? activeColor : disabledColor,
+              color: canScrollRight ? "#fff" : disabledText,
+            }}
+          >
+            <FiChevronRight size={22} />
+          </button>
+        </div>
+      </div>
+
+      {/* ── scroll row ── */}
+      <div
+        ref={scrollRef}
+        className={`projects-scroll-row${isDragging ? " dragging" : ""}`}
+        style={{ cursor: isDragging ? "grabbing" : "grab" }}
+        onMouseDown={onMouseDown}
+        onMouseMove={onRowMouseMove}
+        onMouseLeave={onRowMouseLeave}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {projectsData.map((project, idx) => (
+          <motion.article
+            key={project.title}
+            className="projects-card rounded-2xl p-5 border"
+            style={{
+              background: isDarkMode ? theme.surface : "#ffffff",
+              borderColor: isDarkMode ? theme.border : "#e5e7eb",
+              boxShadow: isDarkMode
+                ? "0 4px 20px rgba(0,0,0,0.4)"
+                : "0 4px 20px rgba(0,0,0,0.07)",
+            }}
+            initial={{ opacity: 0, y: 28 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: idx * 0.07 }}
+          >
+            {/* thumbnail */}
             <div
-              className="relative aspect-video mb-4 rounded-lg overflow-hidden border"
-              style={{ borderColor: isDarkMode ? theme.border : "#e5e7eb" }}
+              className="aspect-video rounded-xl overflow-hidden mb-4 border"
+              style={{ borderColor: isDarkMode ? theme.border : "#f3f4f6" }}
             >
               <img
                 src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover"
-                style={{
-                  background: isDarkMode ? theme.background : "#f3f4f6",
-                }}
               />
             </div>
 
+            {/* title */}
             <motion.h3
-              className="text-xl font-semibold mb-2"
+              className="text-base font-bold mb-2 capitalize"
               style={{ color: theme.textMain }}
-              whileHover={{ x: 5 }}
+              whileHover={{ x: 4 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               {project.title}
             </motion.h3>
 
-            <motion.p
-              className="mb-4"
+            {/* description */}
+            <p
+              className="card-desc text-sm mb-4 line-clamp-3"
               style={{ color: theme.textSecondary }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
             >
               {project.description}
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="flex flex-wrap gap-2 mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
+            {/* tech tags */}
+            <div className="flex flex-wrap gap-1.5 mb-4">
               {project.technologies.map((tech) => (
-                <motion.span
+                <span
                   key={tech}
-                  className="px-3 py-1 rounded-full text-sm border"
+                  className="px-2 py-0.5 rounded-full text-xs border"
                   style={{
                     background: isDarkMode ? theme.primary + "22" : "#eef2ff",
                     color: theme.primary,
-                    borderColor: isDarkMode ? theme.primary + "55" : "#c7d2fe",
+                    borderColor: isDarkMode ? theme.primary + "44" : "#c7d2fe",
                   }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   {tech}
-                </motion.span>
+                </span>
               ))}
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="flex gap-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
+            {/* links */}
+            <div className="flex gap-4 mt-auto">
               <motion.a
                 href={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 transition-colors"
+                className="flex items-center gap-1.5 text-sm"
                 style={{ color: theme.textSecondary }}
-                whileHover={{ x: 5, color: theme.primary }}
+                whileHover={{ x: 3, color: theme.primary }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FaGithub className="h-5 w-5" />
-                <span>Code</span>
+                <FaGithub size={15} />
+                Code
               </motion.a>
-
               <motion.a
                 href={project.demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 transition-colors"
+                className="flex items-center gap-1.5 text-sm"
                 style={{ color: theme.textSecondary }}
-                whileHover={{ x: 5, color: theme.primary }}
+                whileHover={{ x: 3, color: theme.primary }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FaExternalLinkAlt className="h-5 w-5" />
-                <span>Live Demo</span>
+                <FaExternalLinkAlt size={13} />
+                Live Demo
               </motion.a>
-            </motion.div>
+            </div>
           </motion.article>
         ))}
-      </motion.div>
+      </div>
+
+      </div> {/* end centered wrapper */}
+
+      {/* ── scroll hint ── */}
+      {hintVisible && isInView && (
+        <motion.div
+          className="relative z-10 flex items-center justify-center gap-2 mt-5"
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+        >
+          <motion.div
+            animate={{ x: [-4, 0, -4] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+            style={{ color: theme.primary }}
+          >
+            <FiChevronLeft size={16} />
+          </motion.div>
+
+          <motion.span
+            style={{ fontSize: 18 }}
+            animate={{ x: [0, 14, 0] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            👆
+          </motion.span>
+
+          <div className="flex gap-1">
+            {[0,1,2,3,4].map((i) => (
+              <motion.div
+                key={i}
+                className="rounded-full"
+                style={{ width: 5, height: 5, backgroundColor: theme.primary }}
+                animate={{ opacity: [0.2, 1, 0.2] }}
+                transition={{ duration: 1.4, repeat: Infinity, delay: i * 0.18 }}
+              />
+            ))}
+          </div>
+
+          <motion.div
+            animate={{ x: [4, 0, 4] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+            style={{ color: theme.primary }}
+          >
+            <FiChevronRight size={16} />
+          </motion.div>
+
+          <span
+            className="text-xs font-medium tracking-widest uppercase"
+            style={{ color: theme.textSecondary }}
+          >
+            drag to scroll
+          </span>
+        </motion.div>
+      )}
     </section>
   );
 };

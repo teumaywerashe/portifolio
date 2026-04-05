@@ -1,48 +1,101 @@
 .projects-particles {
-    overflow: hidden
+    overflow: hidden;
 }
 
 .particle {
     pointer-events: none;
     mix-blend-mode: screen;
     opacity: 0.9;
-    will-change: transform, opacity, filter
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .particle {
-        animation: drift 18s linear infinite
-    }
+    will-change: transform, opacity, filter;
 }
 
 @keyframes drift {
-    0% {
-        transform: translateY(-5vh) translateX(0) rotate(0deg)
-    }
-    50% {
-        transform: translateY(50vh) translateX(10vw) rotate(45deg)
-    }
-    100% {
-        transform: translateY(100vh) translateX(-5vw) rotate(0deg)
+    0%   { transform: translateY(-5vh)  translateX(0)    rotate(0deg);  }
+    50%  { transform: translateY(50vh)  translateX(10vw) rotate(45deg); }
+    100% { transform: translateY(100vh) translateX(-5vw) rotate(0deg);  }
+}
+
+/* ── Section ─────────────────────────────────────────────────── */
+#projects {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* ── Scroll row ──────────────────────────────────────────────── */
+.projects-scroll-row {
+    display: flex;
+    flex-direction: row;
+    /* gap is set via CSS variable so JS can match it */
+    gap: var(--card-gap, 1.5rem);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    user-select: none;
+    -webkit-user-select: none;
+    /* grow to fill remaining vertical space */
+    flex: 1;
+    align-items: stretch;
+}
+
+.projects-scroll-row::-webkit-scrollbar {
+    display: none;
+}
+
+.projects-scroll-row.dragging * {
+    pointer-events: none;
+}
+
+/* ── Cards: exactly 3 per visible row ───────────────────────── */
+/*
+   width = (100% - 2 gaps) / 3
+   We use a CSS custom property so the math is readable.
+*/
+.projects-card {
+    --gap: var(--card-gap, 1.5rem);
+    flex: 0 0 calc((100% - 2 * var(--gap)) / 3);
+    min-width: 0;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+}
+
+/* card content fills height */
+.projects-card > * {
+    flex-shrink: 0;
+}
+
+.projects-card .card-desc {
+    flex: 1;
+}
+
+/* ── Chevron buttons ─────────────────────────────────────────── */
+.chevron-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+    flex-shrink: 0;
+}
+
+.chevron-btn:hover  { transform: scale(1.1);  }
+.chevron-btn:active { transform: scale(0.95); }
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .projects-card {
+        flex: 0 0 calc((100% - var(--gap)) / 2);
     }
 }
 
-.group:hover .particle {
-    opacity: 1
-}
-
-
-/* Lightweight card enhancement for non-tailwind overrides */
-
-.group.rounded-[3rem] {
-    transition: transform .25s ease, box-shadow .25s ease
-}
-
-
-/* small responsive tweak */
-
-@media (max-width: 768px) {
-    .group.rounded-[3rem] {
-        padding: 2rem
+@media (max-width: 560px) {
+    .projects-card {
+        flex: 0 0 85%;
     }
 }

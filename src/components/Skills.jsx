@@ -17,7 +17,9 @@ import {
   SiExpress,
   SiHtml5,
   SiCss3,
-  SiRender
+  SiRender,
+  SiNextdotjs,
+  SiPostgresql
 } from 'react-icons/si';
 import { TbDeviceMobileCode } from 'react-icons/tb';
 import useTheme from '../context/ThemeContext';
@@ -30,38 +32,30 @@ const Skills = () => {
  const skillSet = [
   // Core Languages
   { name: "JavaScript (ES6+)", icon: <SiJavascript />, color: "#F7DF1E" },
-  { name: "HTML5", icon: <SiHtml5 />, color: "#E34F26" },
-  { name: "CSS3", icon: <SiCss3 />, color: "#1572B6" },
+  {name:"python", icon: <SiFastapi />, color: "#3776AB  "},
 
   // Frontend
-  { name: "React", icon: <SiReact />, color: "#61DAFB" },
-  { name: "React Native", icon: <TbDeviceMobileCode />, color: "#61DAFB" },
-  { name: "Redux / Context API", icon: <SiRedux />, color: "#764ABC" },
-  { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#06B6D4" },
-  { name: "Responsive Design", icon: <MdDevices />, color: "#4CAF50" },
-
+  { name: "React (with Redux)", icon: <SiReact />, color: "#61DAFB" },
+ {name:'next.js', icon: <SiNextdotjs />, color: "#000000"},
   // Backend
   { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
   { name: "Express.js", icon: <SiExpress />,  color: isDarkMode ? "#fff" : "#000",},
-  { name: "RESTful APIs", icon: <SiFastapi />, color: "#009688" },
 
   // Databases
   { name: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
-  { name: "Mongoose ODM", icon: <SiMongodb />, color: "#47A248" },
-
-  // Auth & Security
-  { name: "JWT Authentication", icon: <SiJsonwebtokens />,  color: isDarkMode ? "#fff" : "#000",},
-  { name: "Role-Based Access Control", icon: <MdSecurity />, color: "#FF5722" },
-
+  { name: "PostgreSQL", icon: <SiPostgresql />, color: "#47A248" },
+  
   // Tools
   { name: "Git", icon: <SiGit />, color: "#F05032" },
-  { name: "GitHub", icon: <SiGithub />,  color: isDarkMode ? "#fff" : "#000",},
+
   { name: "Postman (API Testing)", icon: <SiPostman />, color: "#FF6C37" },
 
   // Deployment & Dev
   { name: "Vercel / Netlify", icon: <SiVercel />,  color: isDarkMode ? "#fff" : "#000",},
+
   { name: "Render ", icon: <SiRender />,  color: isDarkMode ? "#fff" : "#000",},
-  { name: "Docker (Basics)", icon: <SiDocker />, color: "#2496ED" },
+  
+  { name: "Docker ", icon: <SiDocker />, color: "#2496ED" },
 
   // Architecture
   { name: "MVC Architecture", icon: <MdAccountTree />, color: "#3F51B5" },

@@ -1,7 +1,7 @@
 export const projectsData = [{
         title: "campus tour assistant",
         description: "A web based platform where students and guests of a campus can get information about each and evey facility in the campus and can navigate to the facility using the map ",
-        image: "",
+        image: "images/campus-tour-assistant.png",
         demoLink: "https://campus-tour-assistant.onrender.com/",
         githubLink: "https://github.com/teumaywerashe/campus_tour_assistant.git",
         technologies: ["TailwindCss", "React", "MongoDB", "Node.js"],
@@ -32,7 +32,7 @@ export const projectsData = [{
     {
         title: "Food delivery",
         description: "A web based food delivery app where users  can order a food and make there payment through chapa ",
-        image: "images/FoodDelivery",
+        image: "images/FoodDelivery.png",
         demoLink: "https://fullstack-food-delivery-1.onrender.com/",
         technologies: ["MERN Stack", "MongoDB", "Tailwind"],
         type: "Commerce",
@@ -52,8 +52,8 @@ export const projectsData = [{
     {
         title: "cafe Menu",
         description: "a cafe menu system where a user scan the QR code of the cafe and see the menu of the cafe.",
-        image: "images/cafeMenu",
-        demoLink: "hhttps://cafemenu123.onrender.com/",
+        image: "images/cafeMenu.png",
+        demoLink: "https://cafemenu123.onrender.com/",
         technologies: ["React", "mongoDB", "RestAPIs", "TailwindCSS"],
         type: "Software",
         specialIcon: 'FiGithub',

@@ -54,7 +54,7 @@ const Skills = () => {
   { name: "Vercel / Netlify", icon: <SiVercel />,  color: isDarkMode ? "#fff" : "#000",},
 
   { name: "Render ", icon: <SiRender />,  color: isDarkMode ? "#fff" : "#000",},
-  
+
   { name: "Docker ", icon: <SiDocker />, color: "#2496ED" },
 
   // Architecture

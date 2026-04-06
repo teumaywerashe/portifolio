@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FiDownload } from "react-icons/fi";
@@ -13,9 +14,10 @@ import {
   SiPostgresql,
   SiTailwindcss,
 } from "react-icons/si";
+import Image from "next/image";
 import profilePic from "../assets/profile.jpeg";
 import useTheme from "../context/ThemeContext";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const Snow = () => (
   <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
@@ -34,68 +36,29 @@ const Snow = () => (
 );
 
 const HeroSection = () => {
-  const navigate =useNavigate()
+  const router = useRouter();
   const { theme, isDarkMode } = useTheme();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
-
-  const techStack = [
-    // Frontend
-    { icon: <FaReact />, color: "#61DBFB", distance: 220, delay: 0 },
-    { icon: <FaHtml5 />, color: "#E34F26", distance: 220, delay: 0.01 },
-    { icon: <FaCss3Alt />, color: "#1572B6", distance: 220, delay: 0.03 },
-    { icon: <FaJs />, color: "#F7DF1E", distance: 220, delay: 0.04 },
-    { icon: <SiTailwindcss />, color: "#38BDF8", distance: 220, delay: 0.05 },
-
-    // Backend
-    { icon: <FaNodeJs />, color: "#68A063", distance: 220, delay: 0.06 },
-    {
-      icon: <SiExpress />,
-      color: isDarkMode ? "#fff" : "#000",
-      distance: 220,
-      delay: 0.07,
-    },
-
-    // Databases
-    { icon: <SiMongodb />, color: "#47A248", distance: 220, delay: 0.08 },
-    { icon: <SiPostgresql />, color: "#336791", distance: 220, delay: 0.09 },
-    { icon: <SiMysql />, color: "#4479A1", distance: 220, delay: 0.1 },
-
-    // Tools & DevOps
-    { icon: <SiGit />, color: "#F05032", distance: 220, delay: 0.11 },
-    {
-      icon: <SiGithub />,
-      color: isDarkMode ? "#fff" : "#000",
-      distance: 220,
-      delay: 0.12,
-    },
-    { icon: <SiPostman />, color: "#FF6C37", distance: 220, delay: 0.13 },
-    { icon: <SiDocker />, color: "#2496ED", distance: 220, delay: 0.14 },
-  ];
 
   return (
     <section
       id="home"
       ref={ref}
       style={{ backgroundColor: theme.background }}
-      className="relative mx-auto  min-h-[65vh] flex flex-col gap-20 md:flex-row items-center justify-center px-4 md:px-16 lg:px-24 pt-12 md:pt-16 overflow-hidden transition-colors duration-500"
+      className="relative mx-auto min-h-[65vh] flex flex-col gap-20 md:flex-row items-center justify-center px-4 md:px-16 lg:px-24 pt-12 md:pt-16 overflow-hidden transition-colors duration-500"
     >
       <Snow />
       <div className="flex mx-50 flex-col items-center md:items-start text-center md:text-left gap-10 md:max-w-xl z-10">
-      
-
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1 }}
           style={{ color: theme.textMain }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black"
-        > 
-        <span className="font-serif "> Hi, I'm </span>
-     
-          <span className=" text-blue-500 mr-40">
-             Teumay Werashe
-          </span>
+        >
+          <span className="font-serif"> Hi, I&apos;m </span>
+          <span className="text-blue-500 mr-40">Teumay Werashe</span>
         </motion.h1>
 
         <motion.p
@@ -105,13 +68,12 @@ const HeroSection = () => {
           style={{ color: theme.textSecondary }}
           className="text-base sm:text-lg md:text-xl leading-relaxed max-w-md md:max-w-xl"
         >
-         A <b>Fullstack </b> and  
-          <b > Mobile App</b> Developer
+          A <b>Fullstack</b> and <b>Mobile App</b> Developer
         </motion.p>
 
         <div className="hidden md:flex gap-4 mt-4">
           <button
-            onClick={() =>navigate('projects')}
+            onClick={() => router.push("/projects")}
             style={{ backgroundColor: theme.primary }}
             className="px-8 py-3 rounded-full text-white font-bold shadow-xl hover:scale-105 transition"
           >
@@ -133,19 +95,16 @@ const HeroSection = () => {
       </div>
 
       <div className="relative mt-10 md:mt-0 mx-auto w-50 h-50 md:w-[380px] md:h-[380px] z-10">
-       
         <div
           className="relative z-10 w-full h-full rounded-full overflow-hidden border-[3px]"
           style={{ borderColor: theme.primary }}
         >
-          <img
+          <Image
             src={profilePic}
             alt="Teumay"
             className="w-full h-full object-cover scale-105 hover:scale-110 transition"
           />
         </div>
-
-    
       </div>
 
       <motion.div
@@ -171,18 +130,16 @@ const HeroSection = () => {
         </a>
       </motion.div>
 
-      <style>
-        {`
-          @keyframes snow {
-            to { transform: translateY(110vh); }
-          }
-          .animate-snow {
-            animation-name: snow;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-          }
-        `}
-      </style>
+      <style>{`
+        @keyframes snow {
+          to { transform: translateY(110vh); }
+        }
+        .animate-snow {
+          animation-name: snow;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+      `}</style>
     </section>
   );
 };

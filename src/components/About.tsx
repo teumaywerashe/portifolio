@@ -1,13 +1,14 @@
+"use client";
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import useTheme from "../context/ThemeContext";
 
 const About = () => {
-  const { theme, isDarkMode } = useTheme();
+  const { theme } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const particles = Array.from({ length: 25 });
+
   return (
     <section
       id="about"
@@ -15,7 +16,6 @@ const About = () => {
       style={{ backgroundColor: theme.background }}
       className="relative py-24 px-6 md:px-16 lg:px-24 transition-colors duration-500 overflow-hidden"
     >
-      {/* Decorative particles for visual consistency */}
       <div className="absolute inset-0 pointer-events-none z-0 opacity-20">
         {particles.map((_, i) => {
           const size = Math.random() * 7 + 3;
@@ -78,7 +78,7 @@ const About = () => {
               style={{ color: theme.textSecondary }}
               className="text-lg md:text-xl leading-relaxed mb-6 font-medium"
             >
-              Hello! I'm{" "}
+              Hello! I&apos;m{" "}
               <span className="font-bold" style={{ color: theme.textMain }}>
                 Teumay Werashe
               </span>
@@ -95,9 +95,9 @@ const About = () => {
               className="text-lg md:text-xl leading-relaxed mb-8 opacity-90"
             >
               My journey began with a curiosity for how digital products are
-              crafted. Over the years, I've developed expertise in{" "}
+              crafted. Over the years, I&apos;ve developed expertise in{" "}
               <span className="font-bold" style={{ color: theme.textMain }}>
-                JavaScript, React,Next.js, Node.js, Express, MongoDB, PostgreSQL
+                JavaScript, React, Next.js, Node.js, Express, MongoDB, PostgreSQL
               </span>
               , and more. I thrive on solving complex problems and delivering
               impactful solutions.

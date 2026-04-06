@@ -1,8 +1,28 @@
+"use client";
 import React from "react";
-import { FiLinkedin, FiGithub, FiMessageCircle, FiMail } from "react-icons/fi";
+import { FiLinkedin, FiGithub, FiMail } from "react-icons/fi";
 import useTheme from "../context/ThemeContext";
 
-const IconLink = ({ href, label, icon, theme }) => (
+interface ThemeColors {
+  surface: string;
+  border: string;
+  textMain: string;
+  primary: string;
+  textSecondary: string;
+  background: string;
+}
+
+const IconLink = ({
+  href,
+  label,
+  icon,
+  theme,
+}: {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+  theme: ThemeColors;
+}) => (
   <a
     href={href}
     target="_blank"
@@ -42,8 +62,7 @@ const Footer = () => {
             style={{ color: theme.textSecondary }}
             className="mt-2 text-sm max-w-xs font-medium opacity-80"
           >
-            Digital Engineer specializing in high-performance MERN & Mobile
-            experiences.
+            Digital Engineer specializing in high-performance MERN & Mobile experiences.
           </p>
         </div>
 
@@ -52,7 +71,6 @@ const Footer = () => {
             {["Home", "Projects", "Contact"].map((item) => (
               <li key={item}>
                 <a
-             
                   href={`#${item.toLowerCase()}`}
                   style={{ color: theme.textSecondary }}
                   className="text-xs font-bold uppercase tracking-[0.2em] hover:text-orange-500 transition-colors"

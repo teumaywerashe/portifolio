@@ -1,15 +1,16 @@
+"use client";
 import React, { useState } from "react";
-import { FiMenu, FiX, FiSun, FiMoon, FiDownload } from "react-icons/fi";
+import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
 import useTheme from "../context/ThemeContext";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, isDarkMode, toggleTheme } = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const handleScroll = (id) => {
+  const handleScroll = (id: string) => {
     setIsOpen(false);
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
@@ -35,7 +36,7 @@ const Navbar = () => {
         <div className="flex h-16 items-center justify-between">
           <button
             onClick={() => {
-              navigate("/");
+              router.push("/");
               handleScroll("home");
             }}
             className="flex items-center gap-2 group cursor-pointer"
@@ -58,7 +59,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => navigate(`/${link.id}`)}
+                onClick={() => router.push(`/${link.id === "home" ? "" : link.id}`)}
                 style={{ color: theme.textSecondary }}
                 className="text-sm cursor-pointer font-semibold transition hover:text-orange-500"
               >
@@ -77,21 +78,6 @@ const Navbar = () => {
               >
                 {isDarkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
               </button>
-
-              {/* <a
-                href="https://drive.google.com/file/d/19FBickcTMCnS_5X_vdVo22mDkVH0KnHD/view?usp=sharing"
-                target="_blank"
-                rel="noreferrer"
-                // download="Teumay_Werashe_resume.pdf"
-                className="flex items-center justify-center gap-3 font-bold rounded-full px-5 py-2 text-sm transition hover:bg-gray-500/5"
-                style={{
-                  border: `2px solid ${theme.border}`,
-                  backgroundColor: theme.primary,
-                  color: "white",
-                }}
-              >
-                <FiDownload /> Get Resume
-              </a> */}
             </div>
           </div>
 
@@ -137,20 +123,6 @@ const Navbar = () => {
               {link.label}
             </button>
           ))}
-
-          {/* <a
-            href="./Teumay_Werashe_resume.pdf"
-            
-            download="Teumay_Werashe_resume.pdf"
-            className="flex items-center justify-center gap-3 mt-4 w-full rounded-full py-4 text-center text-lg font-bold transition hover:bg-gray-500/5"
-            style={{
-              border: `2px solid ${theme.border}`,
-              backgroundColor: theme.primary,
-              color: "white",
-            }}
-          >
-            <FiDownload /> Get Resume
-          </a> */}
         </div>
       </div>
     </nav>

@@ -1,41 +1,55 @@
+"use client";
 import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import useTheme from "../context/ThemeContext";
 
+interface FormState {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+interface ToastState {
+  show: boolean;
+  type: string;
+  text: string;
+}
+
 const ContactForm = () => {
   const { theme, isDarkMode } = useTheme();
-  // const [isSending, setIsSending] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
 
-  const [toast, setToast] = useState({ show: false, type: "", text: "" });
+  const [toast, setToast] = useState<ToastState>({ show: false, type: "", text: "" });
 
   const formRef = useRef(null);
   const isInView = useInView(formRef, { once: true, margin: "-100px" });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const showToast = (type, text) => {
+  const showToast = (type: string, text: string) => {
     setToast({ show: true, type, text });
     setTimeout(() => setToast({ show: false, type: "", text: "" }), 3000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     emailjs
       .send("service_gnjno3b", "template_pqi9a8n", form, "3s1iIV23TSVLogOi5")
-      .then(() =>
-         {
+      .then(
+        () => {
           showToast("success", "Message sent successfully!");
-          setForm({ name: "", email: "", phone: "", service: "", message: "" });
-        },(error) => {
+          setForm({ name: "", email: "", phone: "", message: "" });
+        },
+        (error) => {
           console.error(error.text);
           showToast("error", "Failed to send message. Please try again.");
         }
@@ -121,7 +135,7 @@ const ContactForm = () => {
                 type={field.type}
                 name={field.name}
                 placeholder={field.placeholder}
-                value={form[field.name]}
+                value={form[field.name as keyof FormState]}
                 onChange={handleChange}
                 required
                 style={{
@@ -132,31 +146,12 @@ const ContactForm = () => {
                 className="w-full p-4 rounded-2xl border outline-none focus:border-orange-500 transition-all font-medium placeholder:opacity-50"
               />
             ))}
-
-            <select
-              name="service"
-              value={form.service}
-              onChange={handleChange}
-              required
-              style={{
-                backgroundColor: theme.background,
-                color: theme.textMain,
-                borderColor: theme.border,
-              }}
-              className="w-full p-4 rounded-2xl border outline-none focus:border-orange-500 transition-all font-medium appearance-none"
-            >
-              <option value="">Select Service</option>
-              <option value="backend">Backend Development</option>
-              <option value="fullstack">Full-Stack Development</option>
-              <option value="app">mobile App Development</option>
-              <option value="frontend">Front-end Development</option>
-            </select>
           </div>
 
           <textarea
             name="message"
             placeholder="Your Message ..."
-            rows="4"
+            rows={4}
             value={form.message}
             onChange={handleChange}
             required
@@ -191,8 +186,7 @@ const ContactForm = () => {
                 bottom: 30,
                 left: "50%",
                 transform: "translateX(-50%)",
-                backgroundColor:
-                  toast.type === "success" ? "#4ade80" : "#f87171",
+                backgroundColor: toast.type === "success" ? "#4ade80" : "#f87171",
                 color: isDarkMode ? "#111" : "#fff",
                 padding: "1rem 2rem",
                 borderRadius: "1.5rem",

@@ -1,13 +1,24 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-} from "react";
+"use client";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-const ThemeContext = createContext(null);
+interface ThemeColors {
+  background: string;
+  surface: string;
+  primary: string;
+  textMain: string;
+  textSecondary: string;
+  border: string;
+}
 
-const themeColors = {
+interface ThemeContextType {
+  theme: ThemeColors;
+  isDarkMode: boolean;
+  toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextType | null>(null);
+
+const themeColors: Record<"light" | "dark", ThemeColors> = {
   light: {
     background: "#ffffff",
     surface: "#f8fafc",
@@ -26,8 +37,7 @@ const themeColors = {
   },
 };
 
-
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -40,37 +50,25 @@ const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     setIsDarkMode((prev) => {
       const newMode = !prev;
-      localStorage.setItem(
-        "portfolio-theme",
-        newMode ? "dark" : "light"
-      );
+      localStorage.setItem("portfolio-theme", newMode ? "dark" : "light");
       return newMode;
     });
   };
 
-  const theme = isDarkMode
-    ? themeColors.dark
-    : themeColors.light;
+  const theme = isDarkMode ? themeColors.dark : themeColors.light;
 
   return (
-    <ThemeContext.Provider
-      value={{ theme, isDarkMode, toggleTheme }}
-    >
+    <ThemeContext.Provider value={{ theme, isDarkMode, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 };
 
-
-const useTheme = () => {
+const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
-
   if (!context) {
-    throw new Error(
-      "useTheme must be used within ThemeProvider"
-    );
+    throw new Error("useTheme must be used within ThemeProvider");
   }
-
   return context;
 };
 

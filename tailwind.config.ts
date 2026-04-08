@@ -7,6 +7,7 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/flowbite-react/**/*.js",
   ],
+  darkMode: "class",
   theme: {
     extend: {},
   },
@@ -14,3 +15,4 @@ const config: Config = {
 };
 
 export default config;
+

@@ -49,7 +49,22 @@ const HeroSection = () => {
       className="relative mx-auto min-h-[65vh] flex flex-col gap-20 md:flex-row items-center justify-center px-4 md:px-16 lg:px-24 pt-12 md:pt-16 overflow-hidden transition-colors duration-500"
     >
       <Snow />
-      <div className="flex mx-50 flex-col items-center md:items-start text-center md:text-left gap-10 md:max-w-xl z-10">
+
+
+      <div className="">
+        <div className="relative mt-10 md:mt-0 mx-auto w-50 h-50 md:w-[380px] md:h-[380px] z-10">
+        <div
+          className="relative z-10 w-full h-full rounded-full overflow-hidden border-[3px]"
+          style={{ borderColor: theme.primary }}
+        >
+          <Image
+            src={profilePic}
+            alt="Teumay"
+            className="w-full h-full object-cover scale-105 hover:scale-110 transition"
+          />
+        </div>
+      </div>
+       <div className="flex mx-50 flex-col items-center md:items-start text-center md:text-left gap-10 md:max-w-xl z-10">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -94,19 +109,10 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="relative mt-10 md:mt-0 mx-auto w-50 h-50 md:w-[380px] md:h-[380px] z-10">
-        <div
-          className="relative z-10 w-full h-full rounded-full overflow-hidden border-[3px]"
-          style={{ borderColor: theme.primary }}
-        >
-          <Image
-            src={profilePic}
-            alt="Teumay"
-            className="w-full h-full object-cover scale-105 hover:scale-110 transition"
-          />
-        </div>
+      
+  
       </div>
-
+     
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}

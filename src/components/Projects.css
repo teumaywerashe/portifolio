@@ -1,101 +1,150 @@
+/* ── Chevron scroll buttons ─────────────────────────────── */
+
+.chevron-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+}
+
+.chevron-btn:not(.disabled):hover,
+.chevron-btn:not(.disabled):focus {
+  background: var(--chevron-hover-bg, #f3f4f6);
+  color: var(--chevron-hover-color, #6366f1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.chevron-btn.disabled,
+.chevron-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
 .projects-particles {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .particle {
-    pointer-events: none;
-    mix-blend-mode: screen;
-    opacity: 0.9;
-    will-change: transform, opacity, filter;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  will-change: transform, opacity, filter;
 }
 
 @keyframes drift {
-    0%   { transform: translateY(-5vh)  translateX(0)    rotate(0deg);  }
-    50%  { transform: translateY(50vh)  translateX(10vw) rotate(45deg); }
-    100% { transform: translateY(100vh) translateX(-5vw) rotate(0deg);  }
+  0% {
+    transform: translateY(-5vh) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(10vw) rotate(45deg);
+  }
+  100% {
+    transform: translateY(100vh) translateX(-5vw) rotate(0deg);
+  }
 }
 
 /* ── Section ─────────────────────────────────────────────────── */
+
 #projects {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 /* ── Scroll row ──────────────────────────────────────────────── */
+
 .projects-scroll-row {
-    display: flex;
-    flex-direction: row;
-    /* gap is set via CSS variable so JS can match it */
-    gap: var(--card-gap, 1.5rem);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    user-select: none;
-    -webkit-user-select: none;
-    /* grow to fill remaining vertical space */
-    flex: 1;
-    align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  /* gap is set via CSS variable so JS can match it */
+  gap: var(--card-gap, 1.5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  user-select: none;
+  -webkit-user-select: none;
+  /* grow to fill remaining vertical space */
+  flex: 1;
+  align-items: stretch;
 }
 
 .projects-scroll-row::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .projects-scroll-row.dragging * {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /* ── Cards: exactly 3 per visible row ───────────────────────── */
+
 /*
    width = (100% - 2 gaps) / 3
    We use a CSS custom property so the math is readable.
 */
+
 .projects-card {
-    --gap: var(--card-gap, 1.5rem);
-    flex: 0 0 calc((100% - 2 * var(--gap)) / 3);
-    min-width: 0;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
+  --gap: var(--card-gap, 1.5rem);
+  flex: 0 0 calc((100% - 2 * var(--gap)) / 3);
+  min-width: 0;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
 }
 
 /* card content fills height */
+
 .projects-card > * {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .projects-card .card-desc {
-    flex: 1;
+  flex: 1;
 }
 
 /* ── Chevron buttons ─────────────────────────────────────────── */
+
 .chevron-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.25s ease, transform 0.15s ease;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    transform 0.15s ease;
+  flex-shrink: 0;
 }
 
-.chevron-btn:hover  { transform: scale(1.1);  }
-.chevron-btn:active { transform: scale(0.95); }
+.chevron-btn:hover {
+  transform: scale(1.1);
+}
+
+.chevron-btn:active {
+  transform: scale(0.95);
+}
 
 /* ── Responsive ──────────────────────────────────────────────── */
+
 @media (max-width: 900px) {
-    .projects-card {
-        flex: 0 0 calc((100% - var(--gap)) / 2);
-    }
+  .projects-card {
+    flex: 0 0 calc((100% - var(--gap)) / 2);
+  }
 }
 
 @media (max-width: 560px) {
-    .projects-card {
-        flex: 0 0 85%;
-    }
+  .projects-card {
+    flex: 0 0 85%;
+  }
 }

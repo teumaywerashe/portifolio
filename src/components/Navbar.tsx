@@ -61,7 +61,9 @@ const Navbar = () => {
                 key={link.id}
                 onClick={() => router.push(`/${link.id === "home" ? "" : link.id}`)}
                 style={{ color: theme.textSecondary }}
-                className="text-sm cursor-pointer font-semibold transition hover:text-orange-500"
+                className="text-sm cursor-pointer font-semibold transition"
+                onMouseEnter={(e) => (e.currentTarget.style.color = theme.primary)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = theme.textSecondary)}
               >
                 {link.label}
               </button>

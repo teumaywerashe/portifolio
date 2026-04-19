@@ -62,7 +62,7 @@ const ContactForm = () => {
     <section
       id="contact"
       style={{ backgroundColor: theme.background }}
-      className="relative flex items-center justify-center min-h-screen py-16 px-6 overflow-hidden transition-colors duration-500"
+      className="relative py-24 px-6 md:px-16 lg:px-24 overflow-hidden transition-colors duration-500"
     >
       <div className="absolute inset-0 pointer-events-none z-0">
         {particles.map((_, i) => {
@@ -95,6 +95,22 @@ const ContactForm = () => {
         })}
       </div>
 
+      {/* Heading — matches About, Skills, Projects */}
+      <motion.div
+        className="max-w-7xl mx-auto mb-16 text-center md:text-left relative z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+      >
+        <h2
+          style={{ color: theme.textMain }}
+          className="text-4xl md:text-6xl font-black mb-4 tracking-tighter uppercase italic"
+        >
+          Get <span style={{ color: theme.primary }}>In Touch.</span>
+        </h2>
+        <div className="h-1.5 w-24 rounded-full mx-auto md:mx-0" style={{ backgroundColor: theme.primary }} />
+      </motion.div>
+
       <motion.div
         ref={formRef}
         initial={{ opacity: 0, y: 50 }}
@@ -108,20 +124,9 @@ const ContactForm = () => {
             ? "0 25px 50px -12px rgba(0,0,0,0.5)"
             : "0 20px 40px rgba(0,0,0,0.05)",
         }}
-        className="relative z-10 p-8 md:p-12 rounded-[2.5rem] max-w-2xl w-full"
+        className="relative z-10 p-8 md:p-12 rounded-[2.5rem] max-w-2xl w-full mx-auto"
       >
-        <div className="text-center mb-10">
-          <h2
-            style={{ color: theme.textMain }}
-            className="text-4xl md:text-5xl font-black italic uppercase tracking-tighter"
-          >
-            Get <span style={{ color: theme.primary }}>In Touch.</span>
-          </h2>
-          <div
-            className="h-1.5 w-16 rounded-full mx-auto mt-4"
-            style={{ backgroundColor: theme.primary }}
-          ></div>
-        </div>
+        <div className="sr-only">Contact form</div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -143,7 +148,9 @@ const ContactForm = () => {
                   color: theme.textMain,
                   borderColor: theme.border,
                 }}
-                className="w-full p-4 rounded-2xl border outline-none focus:border-orange-500 transition-all font-medium placeholder:opacity-50"
+                className="w-full p-4 rounded-2xl border outline-none transition-all font-medium placeholder:opacity-50"
+                onFocus={(e) => (e.currentTarget.style.borderColor = theme.primary)}
+                onBlur={(e) => (e.currentTarget.style.borderColor = theme.border)}
               />
             ))}
           </div>
@@ -160,7 +167,9 @@ const ContactForm = () => {
               color: theme.textMain,
               borderColor: theme.border,
             }}
-            className="w-full p-4 rounded-2xl border outline-none focus:border-orange-500 transition-all font-medium resize-none placeholder:opacity-50"
+            className="w-full p-4 rounded-2xl border outline-none transition-all font-medium resize-none placeholder:opacity-50"
+            onFocus={(e) => (e.currentTarget.style.borderColor = theme.primary)}
+            onBlur={(e) => (e.currentTarget.style.borderColor = theme.border)}
           ></textarea>
 
           <motion.button

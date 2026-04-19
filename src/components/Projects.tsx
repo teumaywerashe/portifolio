@@ -51,59 +51,53 @@ const Projects = () => {
     setHintVisible(false);
   };
 
-  const onRowMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!drag.current.active) return;
     const el = scrollRef.current;
     if (!el) return;
-    const x = e.pageX - el.offsetLeft;
-    el.scrollLeft = drag.current.scrollLeft - (x - drag.current.startX) * 1.2;
+    el.scrollLeft = drag.current.scrollLeft - (e.pageX - el.offsetLeft - drag.current.startX) * 1.2;
   };
 
-  const onRowMouseLeave = () => {
+  const onMouseUp = () => {
     drag.current.active = false;
     setIsDragging(false);
     cancelAnimationFrame(edgeRaf.current);
-  };
-
-  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    drag.current = {
-      active: true,
-      startX: e.touches[0].pageX - el.offsetLeft,
-      scrollLeft: el.scrollLeft,
-    };
-    setHintVisible(false);
   };
 
   return (
     <section
       ref={sectionRef}
       id="projects"
-      className="py-20 px-4"
-      style={{ background: isDarkMode ? theme.background : "#f9fafb" }}
+      style={{ backgroundColor: theme.background }}
+      className="relative py-24 px-6 md:px-16 lg:px-24 transition-colors duration-500 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
+        {/* Heading — matches About & Skills */}
         <motion.div
-          className="text-center mb-12"
+          className="mb-16 text-center md:text-left"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-3" style={{ color: theme.textMain }}>
-            Projects
+          <h2
+            style={{ color: theme.textMain }}
+            className="text-4xl md:text-6xl font-black mb-4 tracking-tighter uppercase italic"
+          >
+            My <span style={{ color: theme.primary }}>Projects.</span>
           </h2>
-          <p className="text-sm" style={{ color: theme.textSecondary }}>
-            A selection of things I&apos;ve built
-          </p>
+          <div
+            className="h-1.5 w-24 rounded-full mx-auto md:mx-0"
+            style={{ backgroundColor: theme.primary }}
+          />
         </motion.div>
 
+        {/* Scroll controls */}
         <div className="relative">
           {canScrollLeft && (
             <button
               onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-4 rounded-full p-2 shadow-lg"
-              style={{ background: theme.surface, color: theme.primary }}
+              className="chevron-btn absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-5"
+              style={{ backgroundColor: theme.surface, color: theme.primary, border: `1px solid ${theme.border}` }}
               aria-label="Scroll left"
             >
               <FiChevronLeft size={20} />
@@ -112,8 +106,8 @@ const Projects = () => {
           {canScrollRight && (
             <button
               onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 translate-x-4 rounded-full p-2 shadow-lg"
-              style={{ background: theme.surface, color: theme.primary }}
+              className="chevron-btn absolute right-0 top-1/2 -translate-y-1/2 z-10 translate-x-5"
+              style={{ backgroundColor: theme.surface, color: theme.primary, border: `1px solid ${theme.border}` }}
               aria-label="Scroll right"
             >
               <FiChevronRight size={20} />
@@ -122,33 +116,34 @@ const Projects = () => {
 
           <div
             ref={scrollRef}
-            className="projects-scroll flex gap-5 overflow-x-auto pb-4 select-none"
+            className={`projects-scroll-row${isDragging ? " dragging" : ""}`}
             style={{ cursor: isDragging ? "grabbing" : "grab" }}
             onMouseDown={onMouseDown}
-            onMouseMove={onRowMouseMove}
-            onMouseLeave={onRowMouseLeave}
-            onMouseUp={() => { drag.current.active = false; setIsDragging(false); }}
-            onTouchStart={onTouchStart}
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseUp}
+            onMouseUp={onMouseUp}
+            onTouchStart={(e) => {
+              const el = scrollRef.current;
+              if (!el) return;
+              drag.current = { active: true, startX: e.touches[0].pageX - el.offsetLeft, scrollLeft: el.scrollLeft };
+              setHintVisible(false);
+            }}
             onTouchMove={(e) => {
               if (!drag.current.active) return;
               const el = scrollRef.current;
               if (!el) return;
-              el.scrollLeft =
-                drag.current.scrollLeft -
-                (e.touches[0].pageX - el.offsetLeft - drag.current.startX) * 1.2;
+              el.scrollLeft = drag.current.scrollLeft - (e.touches[0].pageX - el.offsetLeft - drag.current.startX) * 1.2;
             }}
             onTouchEnd={() => { drag.current.active = false; }}
           >
             {projectsData.map((project, idx) => (
               <motion.article
                 key={project.title}
-                className="projects-card rounded-2xl p-5 border flex-shrink-0"
+                className="projects-card rounded-[2rem] p-5 border"
                 style={{
                   background: isDarkMode ? theme.surface : "#ffffff",
                   borderColor: isDarkMode ? theme.border : "#e5e7eb",
-                  boxShadow: isDarkMode
-                    ? "0 4px 20px rgba(0,0,0,0.4)"
-                    : "0 4px 20px rgba(0,0,0,0.07)",
+                  boxShadow: isDarkMode ? "0 4px 20px rgba(0,0,0,0.4)" : "0 4px 20px rgba(0,0,0,0.07)",
                 }}
                 initial={{ opacity: 0, y: 28 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -158,75 +153,69 @@ const Projects = () => {
                   className="aspect-video rounded-xl overflow-hidden mb-4 border"
                   style={{ borderColor: isDarkMode ? theme.border : "#f3f4f6" }}
                 >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                 </div>
-                <motion.h3
-                  className="text-base font-bold mb-2 capitalize"
+
+                <h3
+                  className="text-sm font-black uppercase tracking-wide mb-2"
                   style={{ color: theme.textMain }}
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   {project.title}
-                </motion.h3>
-                <p
-                  className="card-desc text-sm mb-4 line-clamp-3"
-                  style={{ color: theme.textSecondary }}
-                >
+                </h3>
+
+                <p className="card-desc text-sm mb-4 leading-relaxed" style={{ color: theme.textSecondary }}>
                   {project.description}
                 </p>
+
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-0.5 rounded-full text-xs border"
+                      className="px-2 py-0.5 rounded-full text-xs border font-medium"
                       style={{
-                        background: isDarkMode ? theme.primary + "22" : "#eef2ff",
+                        background: isDarkMode ? theme.primary + "22" : theme.primary + "15",
                         color: theme.primary,
-                        borderColor: isDarkMode ? theme.primary + "44" : "#c7d2fe",
+                        borderColor: isDarkMode ? theme.primary + "44" : theme.primary + "30",
                       }}
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-4 mt-auto">
-                  <motion.a
+
+                <div className="flex gap-4">
+                  <a
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm"
+                    className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-colors"
                     style={{ color: theme.textSecondary }}
-                    whileHover={{ x: 3, color: theme.primary }}
-                    whileTap={{ scale: 0.95 }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = theme.primary)}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = theme.textSecondary)}
                   >
-                    <FaGithub size={15} />
-                    Code
-                  </motion.a>
-                  <motion.a
+                    <FaGithub size={14} /> Code
+                  </a>
+                  <a
                     href={project.demoLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm"
+                    className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-colors"
                     style={{ color: theme.textSecondary }}
-                    whileHover={{ x: 3, color: theme.primary }}
-                    whileTap={{ scale: 0.95 }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = theme.primary)}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = theme.textSecondary)}
                   >
-                    <FaExternalLinkAlt size={13} />
-                    Live Demo
-                  </motion.a>
+                    <FaExternalLinkAlt size={12} /> Live Demo
+                  </a>
                 </div>
               </motion.article>
             ))}
           </div>
         </div>
 
+        {/* Drag hint */}
         {hintVisible && isInView && (
           <motion.div
-            className="relative z-10 flex items-center justify-center gap-2 mt-5"
+            className="flex items-center justify-center gap-2 mt-6"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.5 }}
@@ -264,7 +253,7 @@ const Projects = () => {
               <FiChevronRight size={16} />
             </motion.div>
             <span
-              className="text-xs font-medium tracking-widest uppercase"
+              className="text-xs font-black uppercase tracking-widest"
               style={{ color: theme.textSecondary }}
             >
               drag to scroll

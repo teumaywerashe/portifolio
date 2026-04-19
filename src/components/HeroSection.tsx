@@ -2,18 +2,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FiDownload } from "react-icons/fi";
-import { FaReact, FaNodeJs, FaHtml5, FaJs, FaCss3Alt } from "react-icons/fa";
-import {
-  SiMongodb,
-  SiExpress,
-  SiPostman,
-  SiGit,
-  SiGithub,
-  SiDocker,
-  SiMysql,
-  SiPostgresql,
-  SiTailwindcss,
-} from "react-icons/si";
 import Image from "next/image";
 import profilePic from "../assets/profile.jpeg";
 import useTheme from "../context/ThemeContext";
@@ -37,7 +25,7 @@ const Snow = () => (
 
 const HeroSection = () => {
   const router = useRouter();
-  const { theme, isDarkMode } = useTheme();
+  const { theme } = useTheme();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
@@ -46,51 +34,64 @@ const HeroSection = () => {
       id="home"
       ref={ref}
       style={{ backgroundColor: theme.background }}
-      className="relative mx-auto min-h-[65vh] flex flex-col gap-20 md:flex-row items-center justify-center px-4 md:px-16 lg:px-24 pt-12 md:pt-16 overflow-hidden transition-colors duration-500"
+      className="relative min-h-[90vh] flex flex-col md:flex-row items-center justify-center gap-48 px-6 md:px-16 lg:px-24 py-20 overflow-hidden transition-colors duration-500"
     >
       <Snow />
 
-
-      <div className="">
-        <div className="relative mt-10 md:mt-0 mx-auto w-50 h-50 md:w-[380px] md:h-[380px] z-10">
+      {/* Profile image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={inView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ delay: 0.1, duration: 0.6 }}
+        className="relative z-10 w-52 h-52 md:w-80 md:h-80 lg:w-96 lg:h-96 shrink-0"
+      >
         <div
-          className="relative z-10 w-full h-full rounded-full overflow-hidden border-[3px]"
-          style={{ borderColor: theme.primary }}
+          className="w-full h-full rounded-full overflow-hidden border-4 border-gray-600"
+          // style={{ borderColor: theme.primary }}
         >
           <Image
             src={profilePic}
-            alt="Teumay"
-            className="w-full h-full object-cover scale-105 hover:scale-110 transition"
+            alt="Teumay Werashe"
+            className="w-full h-full object-cover hover:scale-105 transition duration-500"
           />
         </div>
-      </div>
-       <div className="flex mx-50 flex-col items-center md:items-start text-center md:text-left gap-10 md:max-w-xl z-10">
+      </motion.div>
+
+      {/* Text content */}
+      <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left gap-6 max-w-xl">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.2 }}
           style={{ color: theme.textMain }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black"
+          className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter"
         >
-          <span className="font-serif"> Hi, I&apos;m </span>
-          <span className="text-blue-500 mr-40">Teumay Werashe</span>
+          Hi, I&apos;m{" "}
+          <span style={{ color: theme.primary }}>Teumay Werashe</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.35 }}
           style={{ color: theme.textSecondary }}
-          className="text-base sm:text-lg md:text-xl leading-relaxed max-w-md md:max-w-xl"
+          className="text-lg md:text-xl leading-relaxed"
         >
-          A <b>Fullstack</b> and <b>Mobile App</b> Developer
+          A <span className="font-bold" style={{ color: theme.textMain }}>Fullstack</span> and{" "}
+          <span className="font-bold" style={{ color: theme.textMain }}>Mobile App</span> Developer
+          crafting scalable, user-centric web experiences.
         </motion.p>
 
-        <div className="hidden md:flex gap-4 mt-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5 }}
+          className="flex flex-wrap gap-4 justify-center md:justify-start"
+        >
           <button
             onClick={() => router.push("/projects")}
             style={{ backgroundColor: theme.primary }}
-            className="px-8 py-3 rounded-full text-white font-bold shadow-xl hover:scale-105 transition"
+            className="px-8 py-3 rounded-full text-white font-bold shadow-lg hover:scale-105 transition"
           >
             Explore Projects
           </button>
@@ -98,53 +99,17 @@ const HeroSection = () => {
             href="https://drive.google.com/file/d/19FBickcTMCnS_5X_vdVo22mDkVH0KnHD/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
-            style={{
-              color: theme.textMain,
-              border: `2px solid ${theme.border}`,
-            }}
-            className="px-8 py-3 rounded-full font-bold hover:bg-gray-500/5 transition flex items-center gap-2"
+            style={{ color: theme.textMain, border: `2px solid ${theme.border}` }}
+            className="px-8 py-3 rounded-full font-bold hover:bg-gray-500/10 transition flex items-center gap-2"
           >
             <FiDownload /> Resume
           </a>
-        </div>
+        </motion.div>
       </div>
-
-      
-  
-      </div>
-     
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.5 }}
-        className="flex md:hidden flex-col sm:flex-row gap-4 mt-8 items-center w-full justify-center"
-      >
-        <a
-          href="#projects"
-          style={{ backgroundColor: theme.primary }}
-          className="px-10 py-4 rounded-full text-white font-bold shadow-xl hover:scale-105 transition"
-        >
-          Explore Projects
-        </a>
-        <a
-          href="/Teumay_Werashe_resume.pdf"
-          download
-          style={{ color: theme.textMain, border: `2px solid ${theme.border}` }}
-          className="px-10 py-4 rounded-full font-bold hover:bg-gray-500/5 transition flex items-center gap-2"
-        >
-          <FiDownload /> Resume
-        </a>
-      </motion.div>
 
       <style>{`
-        @keyframes snow {
-          to { transform: translateY(110vh); }
-        }
-        .animate-snow {
-          animation-name: snow;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-        }
+        @keyframes snow { to { transform: translateY(110vh); } }
+        .animate-snow { animation-name: snow; animation-timing-function: linear; animation-iteration-count: infinite; }
       `}</style>
     </section>
   );

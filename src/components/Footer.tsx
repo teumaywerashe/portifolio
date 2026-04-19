@@ -33,7 +33,17 @@ const IconLink = ({
       border: `1px solid ${theme.border}`,
       color: theme.textMain,
     }}
-    className="p-3 rounded-2xl hover:scale-110 transition-all cursor-pointer duration-300 hover:text-white hover:bg-orange-500 shadow-sm"
+    className="p-3 rounded-2xl hover:scale-110 transition-all cursor-pointer duration-300 shadow-sm"
+    onMouseEnter={(e) => {
+      (e.currentTarget as HTMLAnchorElement).style.backgroundColor = theme.primary;
+      (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+      (e.currentTarget as HTMLAnchorElement).style.borderColor = theme.primary;
+    }}
+    onMouseLeave={(e) => {
+      (e.currentTarget as HTMLAnchorElement).style.backgroundColor = theme.surface;
+      (e.currentTarget as HTMLAnchorElement).style.color = theme.textMain;
+      (e.currentTarget as HTMLAnchorElement).style.borderColor = theme.border;
+    }}
   >
     <span className="text-xl">{icon}</span>
   </a>
@@ -73,7 +83,9 @@ const Footer = () => {
                 <a
                   href={`#${item.toLowerCase()}`}
                   style={{ color: theme.textSecondary }}
-                  className="text-xs font-bold uppercase tracking-[0.2em] hover:text-orange-500 transition-colors"
+                  className="text-xs font-bold uppercase tracking-[0.2em] transition-colors"
+                  onMouseEnter={(e) => (e.currentTarget.style.color = theme.primary)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = theme.textSecondary)}
                 >
                   {item}
                 </a>

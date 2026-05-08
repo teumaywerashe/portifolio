@@ -150,7 +150,7 @@ const ContactForm = () => {
                 type={field.type}
                 name={field.name}
                 placeholder={field.placeholder}
-                value={form[field.name as keyof FormState]}
+                value={String(form[field.name as keyof FormState] ?? "")}
                 onChange={handleChange}
                 required
                 style={{

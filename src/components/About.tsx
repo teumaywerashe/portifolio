@@ -82,7 +82,7 @@ const About = () => {
               <span className="font-bold" style={{ color: theme.textMain }}>
                 Teumay Werashe
               </span>
-              , a passionate{" "}
+              , a passionated{" "}
               <span className="font-bold" style={{ color: theme.primary }}>
                 Full Stack Developer
               </span>{" "}
@@ -97,7 +97,8 @@ const About = () => {
               My journey began with a curiosity for how digital products are
               crafted. Over the years, I&apos;ve developed expertise in{" "}
               <span className="font-bold" style={{ color: theme.textMain }}>
-                JavaScript, React, Next.js, Node.js, Express, MongoDB, PostgreSQL
+                JavaScript, React, Next.js, Node.js, Express, MongoDB,
+                PostgreSQL
               </span>
               , and more. I thrive on solving complex problems and delivering
               impactful solutions.

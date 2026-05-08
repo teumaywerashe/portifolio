@@ -46,7 +46,11 @@ const Projects = () => {
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = scrollRef.current;
     if (!el) return;
-    drag.current = { active: true, startX: e.pageX - el.offsetLeft, scrollLeft: el.scrollLeft };
+    drag.current = {
+      active: true,
+      startX: e.pageX - el.offsetLeft,
+      scrollLeft: el.scrollLeft,
+    };
     setIsDragging(true);
     setHintVisible(false);
   };
@@ -55,7 +59,9 @@ const Projects = () => {
     if (!drag.current.active) return;
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollLeft = drag.current.scrollLeft - (e.pageX - el.offsetLeft - drag.current.startX) * 1.2;
+    el.scrollLeft =
+      drag.current.scrollLeft -
+      (e.pageX - el.offsetLeft - drag.current.startX) * 1.2;
   };
 
   const onMouseUp = () => {
@@ -97,7 +103,11 @@ const Projects = () => {
             <button
               onClick={() => scroll("left")}
               className="chevron-btn absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-5"
-              style={{ backgroundColor: theme.surface, color: theme.primary, border: `1px solid ${theme.border}` }}
+              style={{
+                backgroundColor: theme.surface,
+                color: theme.primary,
+                border: `1px solid ${theme.border}`,
+              }}
               aria-label="Scroll left"
             >
               <FiChevronLeft size={20} />
@@ -107,13 +117,16 @@ const Projects = () => {
             <button
               onClick={() => scroll("right")}
               className="chevron-btn absolute right-0 top-1/2 -translate-y-1/2 z-10 translate-x-5"
-              style={{ backgroundColor: theme.surface, color: theme.primary, border: `1px solid ${theme.border}` }}
+              style={{
+                backgroundColor: theme.surface,
+                color: theme.primary,
+                border: `1px solid ${theme.border}`,
+              }}
               aria-label="Scroll right"
             >
               <FiChevronRight size={20} />
             </button>
           )}
-
           <div
             ref={scrollRef}
             className={`projects-scroll-row${isDragging ? " dragging" : ""}`}
@@ -125,25 +138,36 @@ const Projects = () => {
             onTouchStart={(e) => {
               const el = scrollRef.current;
               if (!el) return;
-              drag.current = { active: true, startX: e.touches[0].pageX - el.offsetLeft, scrollLeft: el.scrollLeft };
+              drag.current = {
+                active: true,
+                startX: e.touches[0].pageX - el.offsetLeft,
+                scrollLeft: el.scrollLeft,
+              };
               setHintVisible(false);
             }}
             onTouchMove={(e) => {
               if (!drag.current.active) return;
               const el = scrollRef.current;
               if (!el) return;
-              el.scrollLeft = drag.current.scrollLeft - (e.touches[0].pageX - el.offsetLeft - drag.current.startX) * 1.2;
+              el.scrollLeft =
+                drag.current.scrollLeft -
+                (e.touches[0].pageX - el.offsetLeft - drag.current.startX) *
+                  1.2;
             }}
-            onTouchEnd={() => { drag.current.active = false; }}
+            onTouchEnd={() => {
+              drag.current.active = false;
+            }}
           >
             {projectsData.map((project, idx) => (
               <motion.article
                 key={project.title}
-                className="projects-card rounded-[2rem] p-5 border"
+                className="projects-card rounded-4xl p-5 border"
                 style={{
                   background: isDarkMode ? theme.surface : "#ffffff",
                   borderColor: isDarkMode ? theme.border : "#e5e7eb",
-                  boxShadow: isDarkMode ? "0 4px 20px rgba(0,0,0,0.4)" : "0 4px 20px rgba(0,0,0,0.07)",
+                  boxShadow: isDarkMode
+                    ? "0 4px 20px rgba(0,0,0,0.4)"
+                    : "0 4px 20px rgba(0,0,0,0.07)",
                 }}
                 initial={{ opacity: 0, y: 28 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -153,36 +177,43 @@ const Projects = () => {
                   className="aspect-video rounded-xl overflow-hidden mb-4 border"
                   style={{ borderColor: isDarkMode ? theme.border : "#f3f4f6" }}
                 >
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-
                 <h3
                   className="text-sm font-black uppercase tracking-wide mb-2"
                   style={{ color: theme.textMain }}
                 >
                   {project.title}
                 </h3>
-
-                <p className="card-desc text-sm mb-4 leading-relaxed" style={{ color: theme.textSecondary }}>
+                <p
+                  className="card-desc text-sm mb-4 leading-relaxed"
+                  style={{ color: theme.textSecondary }}
+                >
                   {project.description}
                 </p>
-
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
                       className="px-2 py-0.5 rounded-full text-xs border font-medium"
                       style={{
-                        background: isDarkMode ? theme.primary + "22" : theme.primary + "15",
+                        background: isDarkMode
+                          ? theme.primary + "22"
+                          : theme.primary + "15",
                         color: theme.primary,
-                        borderColor: isDarkMode ? theme.primary + "44" : theme.primary + "30",
+                        borderColor: isDarkMode
+                          ? theme.primary + "44"
+                          : theme.primary + "30",
                       }}
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-
                 <div className="flex gap-4">
                   <a
                     href={project.githubLink}
@@ -190,8 +221,12 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-colors"
                     style={{ color: theme.textSecondary }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = theme.primary)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = theme.textSecondary)}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = theme.primary)
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = theme.textSecondary)
+                    }
                   >
                     <FaGithub size={14} /> Code
                   </a>
@@ -201,8 +236,12 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-colors"
                     style={{ color: theme.textSecondary }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = theme.primary)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = theme.textSecondary)}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = theme.primary)
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = theme.textSecondary)
+                    }
                   >
                     <FaExternalLinkAlt size={12} /> Live Demo
                   </a>
@@ -222,7 +261,11 @@ const Projects = () => {
           >
             <motion.div
               animate={{ x: [-4, 0, -4] }}
-              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
               style={{ color: theme.primary }}
             >
               <FiChevronLeft size={16} />
@@ -230,7 +273,11 @@ const Projects = () => {
             <motion.span
               style={{ fontSize: 18 }}
               animate={{ x: [0, 14, 0] }}
-              transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 1.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             >
               👆
             </motion.span>
@@ -239,15 +286,27 @@ const Projects = () => {
                 <motion.div
                   key={i}
                   className="rounded-full"
-                  style={{ width: 5, height: 5, backgroundColor: theme.primary }}
+                  style={{
+                    width: 5,
+                    height: 5,
+                    backgroundColor: theme.primary,
+                  }}
                   animate={{ opacity: [0.2, 1, 0.2] }}
-                  transition={{ duration: 1.4, repeat: Infinity, delay: i * 0.18 }}
+                  transition={{
+                    duration: 1.4,
+                    repeat: Infinity,
+                    delay: i * 0.18,
+                  }}
                 />
               ))}
             </div>
             <motion.div
               animate={{ x: [4, 0, 4] }}
-              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
               style={{ color: theme.primary }}
             >
               <FiChevronRight size={16} />

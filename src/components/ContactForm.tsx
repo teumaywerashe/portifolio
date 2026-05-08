@@ -9,6 +9,7 @@ interface FormState {
   email: string;
   phone: string;
   message: string;
+  [key: string]: unknown;
 }
 
 interface ToastState {
@@ -26,12 +27,18 @@ const ContactForm = () => {
     message: "",
   });
 
-  const [toast, setToast] = useState<ToastState>({ show: false, type: "", text: "" });
+  const [toast, setToast] = useState<ToastState>({
+    show: false,
+    type: "",
+    text: "",
+  });
 
   const formRef = useRef(null);
   const isInView = useInView(formRef, { once: true, margin: "-100px" });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -52,7 +59,7 @@ const ContactForm = () => {
         (error) => {
           console.error(error.text);
           showToast("error", "Failed to send message. Please try again.");
-        }
+        },
       );
   };
 
@@ -108,7 +115,10 @@ const ContactForm = () => {
         >
           Get <span style={{ color: theme.primary }}>In Touch.</span>
         </h2>
-        <div className="h-1.5 w-24 rounded-full mx-auto md:mx-0" style={{ backgroundColor: theme.primary }} />
+        <div
+          className="h-1.5 w-24 rounded-full mx-auto md:mx-0"
+          style={{ backgroundColor: theme.primary }}
+        />
       </motion.div>
 
       <motion.div
@@ -149,8 +159,12 @@ const ContactForm = () => {
                   borderColor: theme.border,
                 }}
                 className="w-full p-4 rounded-2xl border outline-none transition-all font-medium placeholder:opacity-50"
-                onFocus={(e) => (e.currentTarget.style.borderColor = theme.primary)}
-                onBlur={(e) => (e.currentTarget.style.borderColor = theme.border)}
+                onFocus={(e) =>
+                  (e.currentTarget.style.borderColor = theme.primary)
+                }
+                onBlur={(e) =>
+                  (e.currentTarget.style.borderColor = theme.border)
+                }
               />
             ))}
           </div>
@@ -195,7 +209,8 @@ const ContactForm = () => {
                 bottom: 30,
                 left: "50%",
                 transform: "translateX(-50%)",
-                backgroundColor: toast.type === "success" ? "#4ade80" : "#f87171",
+                backgroundColor:
+                  toast.type === "success" ? "#4ade80" : "#f87171",
                 color: isDarkMode ? "#111" : "#fff",
                 padding: "1rem 2rem",
                 borderRadius: "1.5rem",

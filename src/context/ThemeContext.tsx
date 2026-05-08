@@ -38,7 +38,7 @@ const themeColors: Record<"light" | "dark", ThemeColors> = {
 };
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme");
